@@ -7,7 +7,7 @@ export default function Hero() {
       overflow: "hidden"
     }}>
 
-      {/* 🎥 Background Video */}
+      {/* 🎥 Background Video with Cinematic Zoom */}
       <video
         autoPlay
         loop
@@ -20,7 +20,8 @@ export default function Hero() {
           height: "100%",
           objectFit: "cover",
           top: 0,
-          left: 0
+          left: 0,
+          animation: "zoom 20s ease-in-out infinite alternate"
         }}
       >
         <source src="/videos/bike.mp4" type="video/mp4" />
@@ -47,17 +48,20 @@ export default function Hero() {
         padding: "0 20px"
       }}>
 
+        {/* Title */}
         <h1
           data-aos="fade-up"
           style={{
             fontSize: "70px",
-            letterSpacing: "3px",
-            color: "white"
+            letterSpacing: "4px",
+            color: "white",
+            animation: "fadeSlide 1s ease-out"
           }}
         >
           TACHYON
         </h1>
 
+        {/* Subtitle (FIXED) */}
         <p
           data-aos="fade-up"
           data-aos-delay="200"
@@ -67,7 +71,7 @@ export default function Hero() {
             opacity: "0.9"
           }}
         >
-          <h3> Engineering High Performance Motorcycles</h3>
+          Engineering High Performance Motorcycles
         </p>
 
         {/* 🔥 PREMIUM BUTTON */}
@@ -93,12 +97,63 @@ export default function Hero() {
             e.currentTarget.style.transform = "scale(1)"
             e.currentTarget.style.background = "red"
           }}
-          onClick={() => window.location.href = "/bikes"}
+          onClick={() => {
+            window.scrollTo({
+              top: window.innerHeight,
+              behavior: "smooth"
+            })
+          }}
         >
           Explore Bikes
         </button>
 
       </div>
+
+      {/* ⬇️ SCROLL ARROW (BONUS SUPER PRO TIP) */}
+      <div
+        onClick={() => window.scrollTo({
+          top: window.innerHeight,
+          behavior: "smooth"
+        })}
+        style={{
+          position: "absolute",
+          bottom: "30px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          fontSize: "24px",
+          color: "white",
+          cursor: "pointer",
+          animation: "bounce 1.5s infinite"
+        }}
+      >
+        ↓
+      </div>
+
+      {/* 🎬 ANIMATIONS */}
+      <style>
+        {`
+        @keyframes fadeSlide {
+          0% {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes zoom {
+          0% { transform: scale(1); }
+          100% { transform: scale(1.1); }
+        }
+
+        @keyframes bounce {
+          0%, 100% { transform: translate(-50%, 0); }
+          50% { transform: translate(-50%, 10px); }
+        }
+        `}
+      </style>
 
     </section>
   )
