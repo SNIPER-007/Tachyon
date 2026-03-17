@@ -29,7 +29,7 @@ export default function Bikes() {
         boxSizing: "border-box"
       }}>
 
-        <h1 style={{ fontSize: "40px" }}>Our Motorcycles</h1>
+        <h1 style={{ color: "white" }}>Our Motorcycles</h1>
 
         <div style={{
           display: "flex",
@@ -70,8 +70,8 @@ export default function Bikes() {
                 }}
               />
 
-              <h3 style={{ marginTop: "15px" }}>{bike.name}</h3>
-              <p style={{ opacity: "0.8" }}>{bike.desc}</p>
+              <h3 style={{ color: "white" }}>{bike.name}</h3>
+              <p style={{ color: "#ccc" }}>{bike.desc}</p>
 
             </div>
           ))}

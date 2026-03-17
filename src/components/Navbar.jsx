@@ -15,7 +15,7 @@ export default function Navbar() {
       boxSizing: "border-box"
     }}>
 
-      <h2 style={{ letterSpacing: "2px" }}>TACHYON</h2>
+      <h2 style={{ color: "white" }}>TACHYON</h2>
 
       <div style={{
         display: "flex",

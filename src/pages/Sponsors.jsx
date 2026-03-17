@@ -20,7 +20,7 @@ export default function Sponsors() {
         minHeight: "100vh"
       }}>
 
-        <h1>Our Sponsors</h1>
+        <h1 style={{ color: "white" }}>Our Sponsors</h1>
 
         <div style={{
           display: "grid",

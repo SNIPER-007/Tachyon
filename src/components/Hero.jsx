@@ -63,16 +63,16 @@ export default function Hero() {
 
         {/* Subtitle (FIXED) */}
         <p
-          data-aos="fade-up"
-          data-aos-delay="200"
-          style={{
-            marginTop: "10px",
-            fontSize: "18px",
-            opacity: "0.9"
-          }}
-        >
-          Engineering High Performance Motorcycles
-        </p>
+  data-aos="fade-up"
+  data-aos-delay="200"
+  style={{
+    marginTop: "10px",
+    fontSize: "18px",
+    color: "white"
+  }}
+>
+  Engineering High Performance Motorcycles
+</p>
 
         {/* 🔥 PREMIUM BUTTON */}
         <button
