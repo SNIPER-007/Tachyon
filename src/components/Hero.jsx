@@ -1,13 +1,15 @@
+import { motion } from "framer-motion"
+
 export default function Hero() {
   return (
     <section style={{
-      width: "100%",
-      height: "100vh",
-      position: "relative",
-      overflow: "hidden"
-    }}>
+  width: "100%",
+  height: "100vh",
+  position: "relative",
+  overflow: "hidden"
+}}>
 
-      {/* 🎥 Background Video with Cinematic Zoom */}
+      {/* 🎥 VIDEO BACKGROUND (FIXED WIDTH) */}
       <video
         autoPlay
         loop
@@ -16,7 +18,7 @@ export default function Hero() {
         preload="auto"
         style={{
           position: "absolute",
-          width: "100%",
+          width: "100vw",   // 🔥 FIX (was 100%)
           height: "100%",
           objectFit: "cover",
           top: 0,
@@ -27,15 +29,15 @@ export default function Hero() {
         <source src="/videos/bike.mp4" type="video/mp4" />
       </video>
 
-      {/* 🌑 Dark Overlay */}
+      {/* 🌑 GRADIENT OVERLAY */}
       <div style={{
         position: "absolute",
-        width: "100%",
-        height: "100%",
-        background: "rgba(0,0,0,0.6)"
+        inset: 0,
+        background:
+          "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.85))"
       }} />
 
-      {/* 🧠 Content */}
+      {/* 🧠 CONTENT */}
       <div style={{
         position: "relative",
         zIndex: 2,
@@ -48,54 +50,61 @@ export default function Hero() {
         padding: "0 20px"
       }}>
 
-        {/* Title */}
-        <h1
-          data-aos="fade-up"
+        {/* 🔥 TITLE */}
+        <motion.h1
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
           style={{
             fontSize: "70px",
             letterSpacing: "4px",
-            color: "white",
-            animation: "fadeSlide 1s ease-out"
+            textShadow: "0 0 20px rgba(0,191,255,0.6)",
+            color: "white"
           }}
         >
           TACHYON
-        </h1>
+        </motion.h1>
 
-        {/* Subtitle (FIXED) */}
-        <p
-  data-aos="fade-up"
-  data-aos-delay="200"
-  style={{
-    marginTop: "10px",
-    fontSize: "18px",
-    color: "white"
-  }}
->
-  Engineering High Performance Motorcycles
-</p>
-
-        {/* 🔥 PREMIUM BUTTON */}
-        <button
-          data-aos="fade-up"
-          data-aos-delay="400"
+        {/* ⚡ SUBTITLE */}
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
           style={{
-            marginTop: "30px",
-            padding: "12px 30px",
-            background: "red",
+            marginTop: "12px",
+            fontSize: "20px",
+            opacity: "0.9",
+            color: "white"   // 🔥 safety fix
+          }}
+        >
+          Engineering High Performance Motorcycles
+        </motion.p>
+
+        {/* 🔥 BUTTON */}
+        <motion.button
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          style={{
+            marginTop: "35px",
+            padding: "12px 32px",
+            background: "linear-gradient(45deg, #ff0000, #ff4d4d)",
             border: "none",
             color: "white",
             fontWeight: "600",
             borderRadius: "6px",
             cursor: "pointer",
-            transition: "all 0.3s ease"
+            transition: "0.3s"
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "scale(1.1)"
-            e.currentTarget.style.background = "#ff3333"
+          onMouseMove={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect()
+            const x = e.clientX - rect.left - rect.width / 2
+            const y = e.clientY - rect.top - rect.height / 2
+            e.currentTarget.style.transform =
+              `translate(${x * 0.2}px, ${y * 0.2}px)`
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "scale(1)"
-            e.currentTarget.style.background = "red"
+            e.currentTarget.style.transform = "translate(0,0)"
           }}
           onClick={() => {
             window.scrollTo({
@@ -105,11 +114,11 @@ export default function Hero() {
           }}
         >
           Explore Bikes
-        </button>
+        </motion.button>
 
       </div>
 
-      {/* ⬇️ SCROLL ARROW (BONUS SUPER PRO TIP) */}
+      {/* ⬇️ SCROLL ARROW */}
       <div
         onClick={() => window.scrollTo({
           top: window.innerHeight,
@@ -132,17 +141,6 @@ export default function Hero() {
       {/* 🎬 ANIMATIONS */}
       <style>
         {`
-        @keyframes fadeSlide {
-          0% {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
         @keyframes zoom {
           0% { transform: scale(1); }
           100% { transform: scale(1.1); }

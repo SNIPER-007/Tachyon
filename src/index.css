@@ -1,54 +1,87 @@
-#root {
-  color: white !important;
-}
-
-/* RESET */
+/* 🔥 RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* GLOBAL DARK THEME */
+/* 🌍 ROOT THEME */
 html, body {
+  margin: 0;
+  padding: 0;
   width: 100%;
   overflow-x: hidden;
   background: #0b0b0b;
   color: white;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 /* ROOT */
 #root {
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* 🚨 FORCE TEXT COLORS (STRONG OVERRIDE) */
-h1, h2, h3, h4, h5, h6, p, span, a {
-  color: white !important;
+/* 🔥 TYPOGRAPHY */
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+  font-weight: 600;
 }
 
-/* PREMIUM TEXT */
 p {
-  color: rgba(255,255,255,0.85) !important;
+  color: rgba(255,255,255,0.85);
 }
 
 /* LINKS */
 a {
+  color: white;
   text-decoration: none;
   transition: 0.3s;
 }
 
 a:hover {
-  color: red !important;
+  color: #ff3b3b;
 }
 
 /* BUTTON */
 button {
   font-family: inherit;
+  cursor: pointer;
 }
 
-/* SCROLLBAR */
+/* 🔥 SECTION SYSTEM (FINAL FIX) */
+section {
+  width: 100%;
+  margin: 0;
+  padding: 120px 0; /* ❗ no side padding */
+}
+
+/* 🔥 CONTAINER SYSTEM (VERY IMPORTANT) */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 768px) {
+  section {
+    padding: 100px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+}
+
+/* 🔥 SCROLLBAR */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -56,4 +89,39 @@ button {
 ::-webkit-scrollbar-thumb {
   background: #444;
   border-radius: 10px;
+}
+
+/* ✨ CURSOR GLOW */
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0,191,255,0.2), transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+/* 🔥 SMOOTH SCROLL */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 🔥 SPONSORS CAROUSEL */
+.track {
+  display: flex;
+  gap: 40px;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
+/* 🔥 SAFETY */
+body {
+  position: relative;
+  overflow-x: hidden;
 }

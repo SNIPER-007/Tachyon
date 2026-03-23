@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import { motion } from "framer-motion"
 
 export default function Sponsors() {
 
@@ -13,53 +14,91 @@ export default function Sponsors() {
     <>
       <Navbar />
 
-      <section style={{
-        padding: "120px 40px",
-        textAlign: "center",
-        background: "#0b0b0b",
-        minHeight: "100vh"
-      }}>
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        style={{
+          padding: "120px 40px",
+          textAlign: "center",
+          background: "radial-gradient(circle at center, #111 0%, #000 100%)",
+          minHeight: "100vh",
+          color: "white"
+        }}
+      >
 
-        <h1 style={{ color: "white" }}>Our Sponsors</h1>
+        {/* 🔥 TITLE */}
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Our Sponsors
+        </motion.h1>
 
+        {/* GRID */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
           gap: "30px",
-          marginTop: "50px"
+          marginTop: "60px"
         }}>
 
           {sponsors.map((s, i) => (
-            <div key={i}
-              data-aos="fade-up"
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2 }}
+              viewport={{ once: true }}
+
               style={{
-                background: "white",
+                background: "linear-gradient(145deg, #0a0a0a, #050505)",
                 padding: "30px",
-                borderRadius: "12px"
+                borderRadius: "14px",
+                border: "1px solid rgba(255,255,255,0.1)",
+                transition: "0.3s",
+                cursor: "pointer"
+              }}
+
+              onMouseEnter={(e)=>{
+                e.currentTarget.style.transform = "translateY(-10px) scale(1.03)"
+                e.currentTarget.style.boxShadow =
+                  "0 0 25px rgba(0,191,255,0.4)"
+              }}
+
+              onMouseLeave={(e)=>{
+                e.currentTarget.style.transform = "translateY(0) scale(1)"
+                e.currentTarget.style.boxShadow = "none"
               }}
             >
 
+              {/* LOGO */}
               <img
                 src={s.img}
+                alt={s.name}
                 style={{
-                  height: "100px",
-                  objectFit: "contain"
+                  height: "90px",
+                  objectFit: "contain",
+                  marginBottom: "20px",
+                  filter: "brightness(0.9)"
                 }}
               />
 
+              {/* NAME */}
               <h3 style={{
-                marginTop: "15px",
-                color: "black"
+                marginTop: "10px",
+                fontWeight: "500"
               }}>
                 {s.name}
               </h3>
 
-            </div>
+            </motion.div>
           ))}
 
         </div>
 
-      </section>
+      </motion.section>
 
       <Footer />
     </>
