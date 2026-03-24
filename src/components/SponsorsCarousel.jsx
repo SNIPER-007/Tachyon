@@ -19,20 +19,9 @@ export default function SponsorsCarousel() {
   ]
 
   return (
-    <section style={{
-      padding: "100px 0",
-      background: "black",
-      overflow: "hidden",
-      position: "relative"
-    }}>
+    <section className="sponsorSection">
 
-      <h2 style={{
-        textAlign: "center",
-        marginBottom: "50px",
-        color: "white"
-      }}>
-        Our Sponsors
-      </h2>
+      <h2 className="title">Our Sponsors</h2>
 
       {/* EDGE FADE */}
       <div className="fade-left"></div>
@@ -41,15 +30,13 @@ export default function SponsorsCarousel() {
       <div className="carousel">
         <div className="track">
 
-          {[...sponsors, ...sponsors, ...sponsors].map((s, i) => (
+          {[...sponsors, ...sponsors, ...sponsors, ...sponsors].map((s, i) => (
             <div
               key={i}
               className="card"
 
-              /* 🔥 CLICK */
               onClick={() => window.open(s.link, "_blank")}
 
-              /* 🔥 3D TILT */
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect()
                 const x = e.clientX - rect.left
@@ -58,11 +45,11 @@ export default function SponsorsCarousel() {
                 const centerX = rect.width / 2
                 const centerY = rect.height / 2
 
-                const rotateX = -(y - centerY) / 15
-                const rotateY = (x - centerX) / 15
+                const rotateX = -(y - centerY) / 25
+                const rotateY = (x - centerX) / 25
 
                 e.currentTarget.style.transform =
-                  `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
+                  `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`
               }}
 
               onMouseLeave={(e) => {
@@ -72,7 +59,6 @@ export default function SponsorsCarousel() {
             >
 
               <img src={s.img} alt={s.name} />
-
               <p>{s.name}</p>
 
             </div>
@@ -81,21 +67,33 @@ export default function SponsorsCarousel() {
         </div>
       </div>
 
-      {/* STYLES */}
       <style>
         {`
+
+        .sponsorSection {
+          padding: 110px 0;
+          background: #000;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .title {
+          text-align: center;
+          margin-bottom: 60px;
+        }
+
         .carousel {
           overflow: hidden;
         }
 
+        /* 🔥 PERFECT LOOP */
         .track {
           display: flex;
-          gap: 40px;
+          gap: 50px;
           width: max-content;
-          animation: scroll 18s linear infinite;
+          animation: scroll 28s linear infinite;
         }
 
-        /* PAUSE ON HOVER */
         .carousel:hover .track {
           animation-play-state: paused;
         }
@@ -103,55 +101,61 @@ export default function SponsorsCarousel() {
         /* CARD */
         .card {
           min-width: 220px;
-          background: linear-gradient(145deg, #0a0a0a, #050505);
-          padding: 25px;
-          border-radius: 12px;
+
+          background: rgba(255,255,255,0.03);
+          backdrop-filter: blur(8px);
+
+          padding: 28px;
+          border-radius: 14px;
+
           text-align: center;
-          border: 1px solid rgba(255,255,255,0.1);
-          transition: 0.3s;
+          border: 1px solid rgba(255,255,255,0.08);
+
           cursor: pointer;
+          transition: 0.3s;
 
           transform-style: preserve-3d;
           perspective: 1000px;
         }
 
-        /* HOVER GLOW */
+        /* PREMIUM HOVER */
         .card:hover {
-          box-shadow: 0 0 25px rgba(0,191,255,0.4);
+          box-shadow:
+            0 0 25px rgba(0,191,255,0.4),
+            0 0 60px rgba(0,191,255,0.15);
         }
 
         /* IMAGE */
         .card img {
           height: 80px;
           object-fit: contain;
-          filter: grayscale(100%) brightness(0.8);
+
+          filter: grayscale(100%) brightness(0.7);
           transition: 0.4s;
         }
 
-        /* COLOR ON HOVER */
         .card:hover img {
           filter: grayscale(0%) brightness(1);
         }
 
         /* TEXT */
         .card p {
-          color: white;
-          margin-top: 12px;
+          margin-top: 14px;
           font-size: 14px;
-          opacity: 0.8;
+          opacity: 0.85;
         }
 
-        /* SCROLL */
+        /* 🔥 TRUE INFINITE */
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          100% { transform: translateX(-25%); }
         }
 
-        /* EDGE FADE */
+        /* EDGE FADE STRONGER */
         .fade-left, .fade-right {
           position: absolute;
           top: 0;
-          width: 100px;
+          width: 140px;
           height: 100%;
           z-index: 2;
           pointer-events: none;
@@ -159,13 +163,14 @@ export default function SponsorsCarousel() {
 
         .fade-left {
           left: 0;
-          background: linear-gradient(to right, black, transparent);
+          background: linear-gradient(to right, #000, transparent);
         }
 
         .fade-right {
           right: 0;
-          background: linear-gradient(to left, black, transparent);
+          background: linear-gradient(to left, #000, transparent);
         }
+
         `}
       </style>
 

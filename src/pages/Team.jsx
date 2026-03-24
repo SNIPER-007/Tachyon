@@ -31,71 +31,73 @@ export default function Team(){
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         style={{
-          padding:"120px 40px",
-          textAlign:"center",
           background:"radial-gradient(circle at center, #111 0%, #000 100%)",
           minHeight:"100vh",
           color:"white"
         }}
       >
 
-        {/* 🔥 TITLE */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Our Team
-        </motion.h1>
+        {/* 🔥 CONTAINER FIX */}
+        <div className="container" style={{ textAlign:"center" }}>
 
-        {/* GRID */}
-        <div style={{
-          display:"grid",
-          gridTemplateColumns:"repeat(auto-fit, minmax(250px,1fr))",
-          gap:"30px",
-          marginTop:"60px"
-        }}>
+          {/* 🔥 TITLE */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Our Team
+          </motion.h1>
 
-          {members.map((member,index)=>(
-            <motion.div
-              key={index}
+          {/* GRID */}
+          <div style={{
+            display:"grid",
+            gridTemplateColumns:"repeat(auto-fit, minmax(250px,1fr))",
+            gap:"30px",
+            marginTop:"60px"
+          }}>
 
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              viewport={{ once: true }}
+            {members.map((member,index)=>(
+              <motion.div
+                key={index}
 
-              className="teamCard"
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                viewport={{ once: true }}
 
-              /* 🔥 3D TILT */
-              onMouseMove={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect()
-                const x = e.clientX - rect.left
-                const y = e.clientY - rect.top
+                className="teamCard"
 
-                const centerX = rect.width / 2
-                const centerY = rect.height / 2
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect()
+                  const x = e.clientX - rect.left
+                  const y = e.clientY - rect.top
 
-                const rotateX = -(y - centerY) / 20
-                const rotateY = (x - centerX) / 20
+                  const centerX = rect.width / 2
+                  const centerY = rect.height / 2
 
-                e.currentTarget.style.transform =
-                  `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
-              }}
+                  const rotateX = -(y - centerY) / 20
+                  const rotateY = (x - centerX) / 20
 
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform =
-                  "rotateX(0deg) rotateY(0deg) scale(1)"
-              }}
-            >
+                  e.currentTarget.style.transform =
+                    `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
+                }}
 
-              <img src={member.img} alt={member.name} />
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform =
+                    "rotateX(0deg) rotateY(0deg) scale(1)"
+                }}
+              >
 
-              <h3>{member.name}</h3>
-              <p>{member.role}</p>
+                <img src={member.img} alt={member.name} />
 
-            </motion.div>
-          ))}
+                <h3>{member.name}</h3>
+                <p>{member.role}</p>
+
+              </motion.div>
+            ))}
+
+          </div>
 
         </div>
 
@@ -114,12 +116,10 @@ export default function Team(){
             perspective: 1000px;
           }
 
-          /* 🔥 HOVER EFFECT */
           .teamCard:hover {
             box-shadow: 0 0 25px rgba(0,191,255,0.4);
           }
 
-          /* IMAGE */
           .teamCard img {
             width: 100%;
             height: 220px;
@@ -133,7 +133,6 @@ export default function Team(){
             transform: scale(1.05);
           }
 
-          /* TEXT */
           .teamCard h3 {
             margin-top: 10px;
             font-weight: 500;

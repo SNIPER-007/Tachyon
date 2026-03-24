@@ -1,155 +1,194 @@
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useEffect, useState } from "react"
 
 export default function Hero() {
-  return (
-    <section style={{
-  width: "100%",
-  height: "100vh",
-  position: "relative",
-  overflow: "hidden"
-}}>
 
-      {/* 🎥 VIDEO BACKGROUND (FIXED WIDTH) */}
-      <video
+  const { scrollY } = useScroll()
+
+  /* 🔥 PARALLAX (SCROLL BASED) */
+  const scale = useTransform(scrollY, [0, 400], [1, 1.1])
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.3])
+
+  /* 🔥 MOUSE LIGHT TRACK */
+  const [pos, setPos] = useState({ x: 50, y: 50 })
+
+  useEffect(() => {
+    const move = (e) => {
+      setPos({
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100
+      })
+    }
+    window.addEventListener("mousemove", move)
+    return () => window.removeEventListener("mousemove", move)
+  }, [])
+
+  return (
+    <section className="hero">
+
+      {/* 🎥 VIDEO (PARALLAX) */}
+      <motion.video
         autoPlay
         loop
         muted
         playsInline
-        preload="auto"
-        style={{
-          position: "absolute",
-          width: "100vw",   // 🔥 FIX (was 100%)
-          height: "100%",
-          objectFit: "cover",
-          top: 0,
-          left: 0,
-          animation: "zoom 20s ease-in-out infinite alternate"
-        }}
+        className="heroVideo"
+        style={{ scale, opacity }}
       >
         <source src="/videos/bike.mp4" type="video/mp4" />
-      </video>
+      </motion.video>
 
-      {/* 🌑 GRADIENT OVERLAY */}
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        background:
-          "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.85))"
-      }} />
+      {/* 🌌 BASE OVERLAY */}
+      <div className="heroOverlay" />
+
+      {/* 🔥 MOUSE LIGHT */}
+      <div
+        className="mouseLight"
+        style={{
+          background: `radial-gradient(circle at ${pos.x}% ${pos.y}%, rgba(0,191,255,0.15), transparent 40%)`
+        }}
+      />
 
       {/* 🧠 CONTENT */}
-      <div style={{
-        position: "relative",
-        zIndex: 2,
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        padding: "0 20px"
-      }}>
+      <div className="heroContent">
 
-        {/* 🔥 TITLE */}
         <motion.h1
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          style={{
-            fontSize: "70px",
-            letterSpacing: "4px",
-            textShadow: "0 0 20px rgba(0,191,255,0.6)",
-            color: "white"
-          }}
+          className="heroTitle"
         >
           TACHYON
         </motion.h1>
 
-        {/* ⚡ SUBTITLE */}
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          style={{
-            marginTop: "12px",
-            fontSize: "20px",
-            opacity: "0.9",
-            color: "white"   // 🔥 safety fix
-          }}
+          className="heroSubtitle"
         >
-          Engineering High Performance Motorcycles
+          Engineered for Speed. Built for Precision.
         </motion.p>
 
-        {/* 🔥 BUTTON */}
         <motion.button
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          style={{
-            marginTop: "35px",
-            padding: "12px 32px",
-            background: "linear-gradient(45deg, #ff0000, #ff4d4d)",
-            border: "none",
-            color: "white",
-            fontWeight: "600",
-            borderRadius: "6px",
-            cursor: "pointer",
-            transition: "0.3s"
-          }}
-          onMouseMove={(e) => {
-            const rect = e.currentTarget.getBoundingClientRect()
-            const x = e.clientX - rect.left - rect.width / 2
-            const y = e.clientY - rect.top - rect.height / 2
-            e.currentTarget.style.transform =
-              `translate(${x * 0.2}px, ${y * 0.2}px)`
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translate(0,0)"
-          }}
-          onClick={() => {
-            window.scrollTo({
-              top: window.innerHeight,
-              behavior: "smooth"
-            })
-          }}
+          className="heroBtn"
+          onClick={() => window.scrollTo({
+            top: window.innerHeight,
+            behavior: "smooth"
+          })}
         >
-          Explore Bikes
+          Explore Machines
         </motion.button>
 
       </div>
 
-      {/* ⬇️ SCROLL ARROW */}
-      <div
-        onClick={() => window.scrollTo({
-          top: window.innerHeight,
-          behavior: "smooth"
-        })}
-        style={{
-          position: "absolute",
-          bottom: "30px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          fontSize: "24px",
-          color: "white",
-          cursor: "pointer",
-          animation: "bounce 1.5s infinite"
-        }}
-      >
-        ↓
-      </div>
+      {/* ⬇️ SCROLL */}
+      <div className="scrollArrow">↓</div>
 
-      {/* 🎬 ANIMATIONS */}
       <style>
         {`
-        @keyframes zoom {
-          0% { transform: scale(1); }
-          100% { transform: scale(1.1); }
+
+        .hero {
+          width: 100%;
+          height: 100vh;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .heroVideo {
+          position: absolute;
+          width: 100vw;
+          height: 100%;
+          object-fit: cover;
+          top: 0;
+          left: 0;
+        }
+
+        /* 🌌 DEPTH */
+        .heroOverlay {
+          position: absolute;
+          inset: 0;
+          background:
+            linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.9));
+        }
+
+        /* 🔥 MOUSE LIGHT */
+        .mouseLight {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          transition: background 0.1s;
+        }
+
+        /* CONTENT */
+        .heroContent {
+          position: relative;
+          z-index: 2;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+
+        /* TITLE */
+        .heroTitle {
+          font-family: 'Orbitron', sans-serif;
+          font-size: clamp(50px, 8vw, 90px);
+          letter-spacing: 6px;
+
+          text-shadow:
+            0 0 25px rgba(0,191,255,0.5),
+            0 0 50px rgba(0,191,255,0.15);
+        }
+
+        /* SUBTITLE */
+        .heroSubtitle {
+          margin-top: 10px;
+          font-size: 18px;
+          opacity: 0.85;
+        }
+
+        /* BUTTON */
+        .heroBtn {
+          margin-top: 35px;
+          padding: 14px 36px;
+
+          background: linear-gradient(45deg, #ff0000, #ff4d4d);
+          border: none;
+          color: white;
+          font-weight: 600;
+          border-radius: 6px;
+          cursor: pointer;
+
+          transition: 0.3s;
+        }
+
+        .heroBtn:hover {
+          transform: scale(1.08);
+          box-shadow: 0 0 25px rgba(255,0,0,0.7);
+        }
+
+        /* SCROLL */
+        .scrollArrow {
+          position: absolute;
+          bottom: 30px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 22px;
+          animation: bounce 1.5s infinite;
+          cursor: pointer;
         }
 
         @keyframes bounce {
-          0%, 100% { transform: translate(-50%, 0); }
-          50% { transform: translate(-50%, 10px); }
+          0%,100% { transform: translate(-50%,0); }
+          50% { transform: translate(-50%,10px); }
         }
+
         `}
       </style>
 

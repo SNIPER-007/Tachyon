@@ -11,47 +11,47 @@ export default function Home() {
     <>
       <Navbar />
 
-      {/* 🔥 HERO (instant load, no delay) */}
+      {/* 🔥 HERO (full width — no container) */}
       <Hero />
 
       {/* 🚀 PAGE CONTENT */}
-      <motion.div
+      <motion.main   // ✅ better semantic than div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
 
         {/* 🏍 BIKE PREVIEW */}
-        <motion.div
+        <motion.section
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
           <BikePreview />
-        </motion.div>
+        </motion.section>
 
         {/* 📖 ABOUT PREVIEW */}
-        <motion.div
+        <motion.section
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
           <AboutPreview />
-        </motion.div>
+        </motion.section>
 
         {/* 🤝 SPONSORS */}
-        <motion.div
+        <motion.section
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
         >
           <SponsorsCarousel />
-        </motion.div>
+        </motion.section>
 
-      </motion.div>
+      </motion.main>
 
       <Footer />
     </>

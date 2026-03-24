@@ -19,82 +19,83 @@ export default function Sponsors() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         style={{
-          padding: "120px 40px",
-          textAlign: "center",
           background: "radial-gradient(circle at center, #111 0%, #000 100%)",
           minHeight: "100vh",
           color: "white"
         }}
       >
 
-        {/* 🔥 TITLE */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Our Sponsors
-        </motion.h1>
+        {/* 🔥 CONTAINER FIX */}
+        <div className="container" style={{ textAlign: "center" }}>
 
-        {/* GRID */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "30px",
-          marginTop: "60px"
-        }}>
+          {/* 🔥 TITLE */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Our Sponsors
+          </motion.h1>
 
-          {sponsors.map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2 }}
-              viewport={{ once: true }}
+          {/* GRID */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gap: "30px",
+            marginTop: "60px"
+          }}>
 
-              style={{
-                background: "linear-gradient(145deg, #0a0a0a, #050505)",
-                padding: "30px",
-                borderRadius: "14px",
-                border: "1px solid rgba(255,255,255,0.1)",
-                transition: "0.3s",
-                cursor: "pointer"
-              }}
+            {sponsors.map((s, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }}
+                viewport={{ once: true }}
 
-              onMouseEnter={(e)=>{
-                e.currentTarget.style.transform = "translateY(-10px) scale(1.03)"
-                e.currentTarget.style.boxShadow =
-                  "0 0 25px rgba(0,191,255,0.4)"
-              }}
-
-              onMouseLeave={(e)=>{
-                e.currentTarget.style.transform = "translateY(0) scale(1)"
-                e.currentTarget.style.boxShadow = "none"
-              }}
-            >
-
-              {/* LOGO */}
-              <img
-                src={s.img}
-                alt={s.name}
                 style={{
-                  height: "90px",
-                  objectFit: "contain",
-                  marginBottom: "20px",
-                  filter: "brightness(0.9)"
+                  background: "linear-gradient(145deg, #0a0a0a, #050505)",
+                  padding: "30px",
+                  borderRadius: "14px",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  transition: "0.3s",
+                  cursor: "pointer"
                 }}
-              />
 
-              {/* NAME */}
-              <h3 style={{
-                marginTop: "10px",
-                fontWeight: "500"
-              }}>
-                {s.name}
-              </h3>
+                onMouseEnter={(e)=>{
+                  e.currentTarget.style.transform = "translateY(-10px) scale(1.03)"
+                  e.currentTarget.style.boxShadow =
+                    "0 0 25px rgba(0,191,255,0.4)"
+                }}
 
-            </motion.div>
-          ))}
+                onMouseLeave={(e)=>{
+                  e.currentTarget.style.transform = "translateY(0) scale(1)"
+                  e.currentTarget.style.boxShadow = "none"
+                }}
+              >
+
+                <img
+                  src={s.img}
+                  alt={s.name}
+                  style={{
+                    height: "90px",
+                    objectFit: "contain",
+                    marginBottom: "20px",
+                    filter: "brightness(0.9)"
+                  }}
+                />
+
+                <h3 style={{
+                  marginTop: "10px",
+                  fontWeight: "500"
+                }}>
+                  {s.name}
+                </h3>
+
+              </motion.div>
+            ))}
+
+          </div>
 
         </div>
 

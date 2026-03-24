@@ -4,6 +4,7 @@ import App from './App.jsx'
 
 import Lenis from 'lenis'
 import { useEffect } from 'react'
+import './index.css'   // 🔥 THIS IS MISSING
 
 function SmoothScroll() {
   useEffect(() => {
