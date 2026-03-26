@@ -27,11 +27,10 @@ export default function Team(){
     <>
       <Navbar/>
 
-      <section className="teamPage">
+      <section className="teamPage page">
 
         <div className="container">
 
-          {/* 🔥 TITLE */}
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -39,7 +38,7 @@ export default function Team(){
             Our Team
           </motion.h1>
 
-          {/* 🏎️ CAPTAIN HERO */}
+          {/* 🔥 CAPTAIN */}
           <motion.div
             className="captain"
             initial={{ opacity: 0, y: 60 }}
@@ -57,41 +56,43 @@ export default function Team(){
             </div>
           </motion.div>
 
-          {/* 👥 TEAM GRID */}
-          <div className="teamGrid">
+          {/* 🔥 GRID WRAPPER (KEY FIX) */}
+          <div style={{ padding: "0 10px" }}>
 
-            {members.map((member,index)=>(
-              <motion.div
-                key={index}
-                className="teamCard"
+            <div className="teamGrid">
 
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                viewport={{ once: true }}
-              >
+              {members.map((member,index)=>(
+                <motion.div
+                  key={index}
+                  className="teamCard"
 
-                <img src={member.img} alt={member.name} />
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                >
 
-                <div className="overlay">
-                  <h3>{member.name}</h3>
-                  <p>{member.role}</p>
-                </div>
+                  <img src={member.img} alt={member.name} />
 
-              </motion.div>
-            ))}
+                  <div className="overlay">
+                    <h3>{member.name}</h3>
+                    <p>{member.role}</p>
+                  </div>
+
+                </motion.div>
+              ))}
+
+            </div>
 
           </div>
 
         </div>
 
-        {/* 🔥 STYLES */}
         <style>
 {`
 .teamPage {
   min-height: 100vh;
-
-  padding: 120px 0 120px; /* 🔥 TOP + EXTRA BOTTOM SPACE */
+  padding: 120px 0 120px;
 
   background:
     radial-gradient(circle at 30% 20%, rgba(0,191,255,0.08), transparent),
@@ -99,13 +100,12 @@ export default function Team(){
     #000;
 }
 
-/* TITLE */
 h1 {
   text-align: center;
   margin-bottom: 70px;
 }
 
-/* 🏎️ CAPTAIN */
+/* CAPTAIN */
 .captain {
   display: flex;
   gap: 40px;
@@ -154,11 +154,11 @@ h1 {
   opacity: 0.7;
 }
 
-/* 👥 GRID */
+/* GRID */
 .teamGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap: 35px;
+  gap: 30px;
 }
 
 /* CARD */
@@ -171,13 +171,13 @@ h1 {
 
 .teamCard img {
   width: 100%;
-  height: 260px;
+  height: 240px; /* 🔥 better proportion */
   object-fit: cover;
   transition: 0.4s;
 }
 
 .teamCard:hover img {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 /* OVERLAY */
@@ -185,13 +185,9 @@ h1 {
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 18px;
+  padding: 16px;
 
   background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-}
-
-.overlay h3 {
-  margin: 0;
 }
 
 .overlay p {
@@ -201,6 +197,7 @@ h1 {
 
 /* 📱 MOBILE */
 @media (max-width: 768px) {
+
   .teamPage {
     padding: 100px 0 100px;
   }
@@ -208,12 +205,18 @@ h1 {
   .captain {
     flex-direction: column;
     text-align: center;
+    gap: 20px;
   }
 
   .captain img {
     width: 100%;
-    height: 250px;
+    height: 240px;
   }
+
+  .captainInfo h2 {
+    font-size: 22px;
+  }
+
 }
 `}
 </style>

@@ -5,20 +5,21 @@ export default function Hero() {
 
   const { scrollY } = useScroll()
 
-  /* 🔥 PARALLAX (SCROLL BASED) */
   const scale = useTransform(scrollY, [0, 400], [1, 1.1])
   const opacity = useTransform(scrollY, [0, 300], [1, 0.3])
 
-  /* 🔥 MOUSE LIGHT TRACK */
   const [pos, setPos] = useState({ x: 50, y: 50 })
 
   useEffect(() => {
+    if (window.innerWidth < 768) return // 🔥 disable on mobile
+
     const move = (e) => {
       setPos({
         x: (e.clientX / window.innerWidth) * 100,
         y: (e.clientY / window.innerHeight) * 100
       })
     }
+
     window.addEventListener("mousemove", move)
     return () => window.removeEventListener("mousemove", move)
   }, [])
@@ -26,7 +27,7 @@ export default function Hero() {
   return (
     <section className="hero">
 
-      {/* 🎥 VIDEO (PARALLAX) */}
+      {/* 🎥 VIDEO */}
       <motion.video
         autoPlay
         loop
@@ -38,18 +39,20 @@ export default function Hero() {
         <source src="/videos/bike.mp4" type="video/mp4" />
       </motion.video>
 
-      {/* 🌌 BASE OVERLAY */}
+      {/* 🌌 OVERLAY */}
       <div className="heroOverlay" />
 
-      {/* 🔥 MOUSE LIGHT */}
-      <div
-        className="mouseLight"
-        style={{
-          background: `radial-gradient(circle at ${pos.x}% ${pos.y}%, rgba(0,191,255,0.15), transparent 40%)`
-        }}
-      />
+      {/* 🔥 MOUSE LIGHT (DESKTOP ONLY) */}
+      {window.innerWidth > 768 && (
+        <div
+          className="mouseLight"
+          style={{
+            background: `radial-gradient(circle at ${pos.x}% ${pos.y}%, rgba(0,191,255,0.15), transparent 40%)`
+          }}
+        />
+      )}
 
-      {/* 🧠 CONTENT */}
+      {/* CONTENT */}
       <div className="heroContent">
 
         <motion.h1
@@ -85,7 +88,7 @@ export default function Hero() {
 
       </div>
 
-      {/* ⬇️ SCROLL */}
+      {/* SCROLL */}
       <div className="scrollArrow">↓</div>
 
       <style>
@@ -100,14 +103,13 @@ export default function Hero() {
 
         .heroVideo {
           position: absolute;
-          width: 100vw;
+          width: 100%;
           height: 100%;
           object-fit: cover;
           top: 0;
           left: 0;
         }
 
-        /* 🌌 DEPTH */
         .heroOverlay {
           position: absolute;
           inset: 0;
@@ -115,7 +117,6 @@ export default function Hero() {
             linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.9));
         }
 
-        /* 🔥 MOUSE LIGHT */
         .mouseLight {
           position: absolute;
           inset: 0;
@@ -123,7 +124,6 @@ export default function Hero() {
           transition: background 0.1s;
         }
 
-        /* CONTENT */
         .heroContent {
           position: relative;
           z-index: 2;
@@ -133,60 +133,51 @@ export default function Hero() {
           justify-content: center;
           align-items: center;
           text-align: center;
+          padding: 0 20px; /* 🔥 mobile safety */
         }
 
-        /* TITLE */
         .heroTitle {
-          font-family: 'Orbitron', sans-serif;
-          font-size: clamp(50px, 8vw, 90px);
+          font-size: clamp(42px, 8vw, 90px);
           letter-spacing: 6px;
-
-          text-shadow:
-            0 0 25px rgba(0,191,255,0.5),
-            0 0 50px rgba(0,191,255,0.15);
         }
 
-        /* SUBTITLE */
         .heroSubtitle {
-          margin-top: 10px;
-          font-size: 18px;
-          opacity: 0.85;
+          margin-top: 12px;
+          font-size: 16px;
         }
 
-        /* BUTTON */
         .heroBtn {
-          margin-top: 35px;
-          padding: 14px 36px;
-
-          background: linear-gradient(45deg, #ff0000, #ff4d4d);
-          border: none;
-          color: white;
-          font-weight: 600;
-          border-radius: 6px;
-          cursor: pointer;
-
-          transition: 0.3s;
+          margin-top: 30px;
+          padding: 14px 28px;
         }
 
-        .heroBtn:hover {
-          transform: scale(1.08);
-          box-shadow: 0 0 25px rgba(255,0,0,0.7);
-        }
-
-        /* SCROLL */
         .scrollArrow {
           position: absolute;
-          bottom: 30px;
+          bottom: 20px;
           left: 50%;
           transform: translateX(-50%);
-          font-size: 22px;
-          animation: bounce 1.5s infinite;
-          cursor: pointer;
+          font-size: 20px;
         }
 
-        @keyframes bounce {
-          0%,100% { transform: translate(-50%,0); }
-          50% { transform: translate(-50%,10px); }
+        @media (max-width: 768px) {
+
+          .heroTitle {
+            letter-spacing: 3px;
+          }
+
+          .heroSubtitle {
+            font-size: 14px;
+          }
+
+          .heroBtn {
+            padding: 12px 22px;
+            font-size: 14px;
+          }
+
+          .scrollArrow {
+            bottom: 15px;
+          }
+
         }
 
         `}

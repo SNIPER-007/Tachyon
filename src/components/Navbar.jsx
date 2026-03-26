@@ -62,13 +62,13 @@ export default function Navbar() {
           justify-content: space-between;
           align-items: center;
 
-          padding: 16px 28px; /* 🔥 balanced padding */
+          padding: 16px 40px; /* 🔥 matches container */
 
           backdrop-filter: blur(14px);
           background: rgba(0,0,0,0.7);
           border-bottom: 1px solid rgba(255,255,255,0.08);
 
-          box-sizing: border-box; /* 🔥 prevents overflow */
+          box-sizing: border-box;
         }
 
         /* LOGO */
@@ -85,14 +85,13 @@ export default function Navbar() {
 
         /* HAMBURGER */
         .hamburger {
-          width: 26px;
-          height: 20px;
+          width: 30px; /* 🔥 bigger for touch */
+          height: 22px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           cursor: pointer;
 
-          margin-right: 4px; /* 🔥 shift slightly left */
           z-index: 1100;
         }
 
@@ -107,7 +106,7 @@ export default function Navbar() {
 
         /* HAMBURGER ANIMATION */
         .hamburger.active span:nth-child(1) {
-          transform: rotate(45deg) translate(5px, 5px);
+          transform: rotate(45deg) translate(5px, 6px);
         }
 
         .hamburger.active span:nth-child(2) {
@@ -153,13 +152,11 @@ export default function Navbar() {
           transition: 0.3s;
         }
 
-        /* 🔥 JUMP EFFECT */
         .menuLink:hover {
           transform: translateY(-6px);
           color: white;
         }
 
-        /* 🔥 UNDERLINE */
         .menuLink::after {
           content: "";
           position: absolute;
@@ -184,6 +181,19 @@ export default function Navbar() {
 
         .menuLink.active::after {
           width: 100%;
+        }
+
+        /* 📱 MOBILE */
+        @media (max-width: 768px) {
+
+          .navbar {
+            padding: 14px 20px; /* 🔥 tighter mobile */
+          }
+
+          .menuLink {
+            font-size: 22px; /* 🔥 better fit */
+          }
+
         }
 
         `}

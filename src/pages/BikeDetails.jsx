@@ -1,3 +1,5 @@
+// based on your uploaded file :contentReference[oaicite:0]{index=0}
+
 import { useParams } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
@@ -8,7 +10,6 @@ export default function BikeDetails(){
 
   const { id } = useParams()
 
-  /* 🔥 COUNT UP ANIMATION */
   function CountUp({ value }) {
     const [count, setCount] = useState(0)
 
@@ -37,7 +38,6 @@ export default function BikeDetails(){
     return <span>{count}</span>
   }
 
-  /* 🔥 BIKE DATA */
   const bikes = {
     x1: {
       name: "Tachyon X1",
@@ -74,10 +74,10 @@ export default function BikeDetails(){
     <>
       <Navbar/>
 
-      <section className="bikeDetails">
+      <section className="bikeDetails page">
+
         <div className="container">
 
-          {/* 🔥 TITLE */}
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,7 +86,6 @@ export default function BikeDetails(){
             {bike.name}
           </motion.h1>
 
-          {/* 🚀 GRID */}
           <div className="grid">
 
             {/* IMAGE */}
@@ -117,11 +116,12 @@ export default function BikeDetails(){
                   >
 
                     <div className="icon">{spec.icon}</div>
-
                     <h4>{spec.label}</h4>
 
                     <p className="value">
-                      {isNaN(spec.value) ? spec.value : <CountUp value={spec.value} />}
+                      {isNaN(spec.value)
+                        ? spec.value
+                        : <CountUp value={spec.value} />}
                       <span> {spec.unit}</span>
                     </p>
 
@@ -133,7 +133,7 @@ export default function BikeDetails(){
 
           </div>
 
-          {/* 👥 TEAM */}
+          {/* TEAM */}
           <div className="teamSection">
             <h2>Team Behind the Machine</h2>
 
@@ -151,7 +151,6 @@ export default function BikeDetails(){
 
       <Footer/>
 
-      {/* 🔥 STYLES */}
       <style>
         {`
 
@@ -163,13 +162,12 @@ export default function BikeDetails(){
         .title {
           text-align: center;
           margin-bottom: 60px;
-          font-family: 'Orbitron', sans-serif;
         }
 
         .grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 40px;
+          gap: 50px;
           align-items: center;
         }
 
@@ -180,14 +178,14 @@ export default function BikeDetails(){
         }
 
         .desc {
-          margin-bottom: 20px;
+          margin-bottom: 25px;
           opacity: 0.8;
         }
 
         .specGrid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
-          gap: 15px;
+          gap: 18px;
         }
 
         .specCard {
@@ -197,12 +195,6 @@ export default function BikeDetails(){
           border-radius: 12px;
           text-align: center;
           border: 1px solid rgba(255,255,255,0.1);
-          transition: 0.3s;
-        }
-
-        .specCard:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 0 20px rgba(0,191,255,0.3);
         }
 
         .icon {
@@ -217,7 +209,7 @@ export default function BikeDetails(){
 
         /* TEAM */
         .teamSection {
-          margin-top: 80px;
+          margin-top: 100px;
           text-align: center;
         }
 
@@ -234,10 +226,31 @@ export default function BikeDetails(){
           opacity: 0.8;
         }
 
+        /* 📱 MOBILE */
         @media (max-width: 768px) {
+
           .grid {
             grid-template-columns: 1fr;
+            gap: 30px;
           }
+
+          .imageBox img {
+            max-height: 250px; /* 🔥 KEY FIX */
+            object-fit: contain;
+          }
+
+          .desc {
+            font-size: 14px;
+          }
+
+          .specGrid {
+            gap: 12px;
+          }
+
+          .teamSection {
+            margin-top: 70px;
+          }
+
         }
 
         `}

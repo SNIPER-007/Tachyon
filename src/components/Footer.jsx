@@ -4,8 +4,8 @@ export default function Footer() {
 
       <div className="container footerGrid">
 
-        {/* 🔥 LEFT - LOGO + ADDRESS */}
-        <div className="col">
+        {/* LEFT */}
+        <div className="col leftCol">
           <h2 className="logo">TACHYON</h2>
 
           <p className="address">
@@ -13,17 +13,14 @@ export default function Footer() {
             Vidyavihar East, Mumbai - 400077<br/>
             Maharashtra, India
           </p>
+
+          <p className="contact">
+            tachyonteam@gmail.com<br/>
+            +91 98765 43210
+          </p>
         </div>
 
-        {/* 📞 CENTER - CONTACT */}
-        <div className="col">
-          <h3>GET IN TOUCH</h3>
-
-          <p>tachyonteam@gmail.com</p>
-          <p>+91 98765 43210</p>
-        </div>
-
-        {/* 🔗 RIGHT - LINKS */}
+        {/* QUICK LINKS */}
         <div className="col">
           <h3>QUICK LINKS</h3>
 
@@ -34,7 +31,7 @@ export default function Footer() {
           <a href="/sponsors">Sponsors</a>
         </div>
 
-        {/* 🌐 SOCIAL */}
+        {/* SOCIAL */}
         <div className="col socialCol">
           <h3>CONNECT</h3>
 
@@ -48,24 +45,44 @@ export default function Footer() {
 
       </div>
 
-      {/* 🔥 BOTTOM BAR */}
+      {/* BOTTOM */}
       <div className="footerBottom">
         © 2026 Tachyon Racing Team. All rights reserved.
       </div>
 
-      {/* STYLES */}
       <style>
         {`
+
         .footer {
           background: linear-gradient(to top, #000, #0a0a0a);
-          padding: 70px 0 20px;
+          padding: 80px 0 20px;
           border-top: 1px solid rgba(255,255,255,0.08);
         }
 
         .footerGrid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          grid-template-columns: 1.5fr 1fr 1fr;
           gap: 50px;
+          align-items: start;
+        }
+
+        /* LEFT */
+        .leftCol .logo {
+          letter-spacing: 4px;
+          margin-bottom: 15px;
+
+          text-shadow: 0 0 20px rgba(0,191,255,0.4);
+        }
+
+        .address {
+          line-height: 1.6;
+          opacity: 0.6;
+          margin-bottom: 15px;
+        }
+
+        .contact {
+          font-size: 14px;
+          opacity: 0.8;
         }
 
         /* COLUMN */
@@ -76,31 +93,17 @@ export default function Footer() {
           opacity: 0.8;
         }
 
-        .col p, .col a {
+        .col a {
+          display: block;
           font-size: 14px;
           opacity: 0.7;
           margin-bottom: 8px;
-          display: block;
           transition: 0.3s;
         }
 
         .col a:hover {
           color: #00f0ff;
           opacity: 1;
-        }
-
-        /* LOGO */
-        .logo {
-          letter-spacing: 4px;
-          margin-bottom: 15px;
-
-          text-shadow:
-            0 0 20px rgba(0,191,255,0.4);
-        }
-
-        .address {
-          line-height: 1.6;
-          opacity: 0.6;
         }
 
         /* SOCIAL */
@@ -111,8 +114,9 @@ export default function Footer() {
         }
 
         .icon {
-          width: 40px;
-          height: 40px;
+          width: 44px;
+          height: 44px;
+
           display: flex;
           align-items: center;
           justify-content: center;
@@ -134,19 +138,40 @@ export default function Footer() {
         /* BOTTOM */
         .footerBottom {
           text-align: center;
-          margin-top: 50px;
+          margin-top: 60px;
           padding-top: 15px;
           border-top: 1px solid rgba(255,255,255,0.08);
           font-size: 12px;
           opacity: 0.5;
         }
 
-        /* MOBILE */
+        /* 📱 MOBILE */
         @media (max-width: 768px) {
-          .footerGrid {
-            gap: 30px;
+
+          .footer {
+            padding: 60px 0 20px;
           }
+
+          .footerGrid {
+            grid-template-columns: 1fr;
+            gap: 35px;
+            text-align: center;
+          }
+
+          .icons {
+            justify-content: center;
+          }
+
+          .leftCol {
+            text-align: center;
+          }
+
+          .footerBottom {
+            margin-top: 40px;
+          }
+
         }
+
         `}
       </style>
 

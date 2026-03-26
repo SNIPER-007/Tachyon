@@ -9,6 +9,7 @@ export default function About(){
       <Navbar/>
 
       <motion.section
+        className="page" /* 🔥 FIX NAVBAR OVERLAP */
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -19,7 +20,7 @@ export default function About(){
         }}
       >
 
-        {/* 🔥 CONTAINER FIX */}
+        {/* 🔥 CONTAINER */}
         <div className="container" style={{ textAlign: "center" }}>
 
           {/* 🔥 TITLE */}
@@ -29,7 +30,8 @@ export default function About(){
             transition={{ delay: 0.2 }}
             style={{
               fontSize: "60px",
-              letterSpacing: "2px"
+              letterSpacing: "2px",
+              marginBottom: "20px" /* 🔥 better spacing */
             }}
           >
             About Tachyon
