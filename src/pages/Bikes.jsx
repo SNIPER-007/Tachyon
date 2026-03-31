@@ -1,14 +1,23 @@
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 export default function Bikes() {
 
   const [active, setActive] = useState(null)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const navigate = useNavigate()
 
-  const isMobile = window.innerWidth < 768 // 🔥 detect mobile
+  /* 🔥 RESPONSIVE DETECTION */
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   const bikes = [
     {
@@ -27,7 +36,7 @@ export default function Bikes() {
 
   const handleClick = (i) => {
     if (isMobile) {
-      setActive(active === i ? null : i) // 🔥 toggle on tap
+      setActive(active === i ? null : i)
     }
   }
 
@@ -52,9 +61,11 @@ export default function Bikes() {
                 onClick={() => handleClick(i)}
               >
 
-                <div className="rotatedText">
-                  {bike.name}
-                </div>
+                {!isMobile && (
+                  <div className="rotatedText">
+                    {bike.name}
+                  </div>
+                )}
 
                 <div className="content">
 
@@ -132,12 +143,12 @@ export default function Bikes() {
     0 0 80px rgba(0,191,255,0.1);
 }
 
+/* SIDE TEXT */
 .rotatedText {
   transform: rotate(-90deg);
   font-size: 18px;
   letter-spacing: 2px;
   opacity: 0.8;
-  transition: 0.4s;
 }
 
 .bikeCard.active .rotatedText {
@@ -162,7 +173,6 @@ export default function Bikes() {
 
 .bikeCard.active .content {
   opacity: 1;
-  padding: 30px 20px;
 }
 
 /* IMAGE */
@@ -171,11 +181,6 @@ export default function Bikes() {
   height: 220px;
   object-fit: contain;
   margin-top: 10px;
-  transition: 0.5s;
-}
-
-.bikeCard.active .content img {
-  transform: scale(1.08);
 }
 
 /* TEXT */
@@ -192,33 +197,15 @@ export default function Bikes() {
 .content button {
   margin-bottom: 10px;
   padding: 12px 24px;
-
   background: linear-gradient(45deg, #ff0000, #ff4d4d);
   border: none;
   border-radius: 6px;
   color: white;
-
   font-weight: 600;
   cursor: pointer;
 }
 
-/* GLOW */
-.bikeCard::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-
-  background: linear-gradient(120deg, #00f0ff, transparent, #00f0ff);
-  opacity: 0;
-  transition: 0.4s;
-}
-
-.bikeCard.active::before {
-  opacity: 0.25;
-}
-
-/* 📱 MOBILE */
+/* 📱 MOBILE (FINAL FIX) */
 @media (max-width: 768px) {
 
   .bikeContainer {
@@ -228,11 +215,18 @@ export default function Bikes() {
   }
 
   .bikeCard {
-    height: 260px; /* 🔥 PERFECT HEIGHT */
+    height: auto;
+    padding: 20px;
+    filter: brightness(1);
+  }
+
+  .content {
+    position: relative;
+    opacity: 1; /* 🔥 ALWAYS VISIBLE */
   }
 
   .content img {
-    height: 160px; /* 🔥 better fit */
+    height: 180px;
   }
 
 }

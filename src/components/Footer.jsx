@@ -70,19 +70,18 @@ export default function Footer() {
         .leftCol .logo {
           letter-spacing: 4px;
           margin-bottom: 15px;
-
           text-shadow: 0 0 20px rgba(0,191,255,0.4);
         }
 
         .address {
           line-height: 1.6;
-          opacity: 0.6;
+          opacity: 0.7;
           margin-bottom: 15px;
         }
 
         .contact {
           font-size: 14px;
-          opacity: 0.8;
+          opacity: 0.9;
         }
 
         /* COLUMN */
@@ -93,17 +92,17 @@ export default function Footer() {
           opacity: 0.8;
         }
 
-        .col a {
+        /* 🔥 FIXED LINK VISIBILITY */
+        .footer .col a {
           display: block;
           font-size: 14px;
-          opacity: 0.7;
+          color: rgba(255,255,255,0.9); /* 🔥 brighter */
           margin-bottom: 8px;
           transition: 0.3s;
         }
 
-        .col a:hover {
+        .footer .col a:hover {
           color: #00f0ff;
-          opacity: 1;
         }
 
         /* SOCIAL */
@@ -145,7 +144,7 @@ export default function Footer() {
           opacity: 0.5;
         }
 
-        /* 📱 MOBILE */
+        /* 📱 MOBILE FIX */
         @media (max-width: 768px) {
 
           .footer {
@@ -154,16 +153,25 @@ export default function Footer() {
 
           .footerGrid {
             grid-template-columns: 1fr;
-            gap: 35px;
+            gap: 30px;
+            text-align: left; /* 🔥 LEFT ALIGN ALL */
+          }
+
+          .leftCol {
+            text-align: left;
+          }
+
+          .col {
+            text-align: left;
+          }
+
+          /* 🔥 ONLY SOCIAL CENTER */
+          .socialCol {
             text-align: center;
           }
 
           .icons {
             justify-content: center;
-          }
-
-          .leftCol {
-            text-align: center;
           }
 
           .footerBottom {
