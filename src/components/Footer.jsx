@@ -25,10 +25,10 @@ export default function Footer() {
           <h3>QUICK LINKS</h3>
 
           <a href="/">Home</a>
-          <a href="/team">Team</a>
-          <a href="/bikes">Bikes</a>
-          <a href="/about">About</a>
-          <a href="/sponsors">Sponsors</a>
+          <a href="/Team">Team</a>
+          <a href="/Bikes">Bikes</a>
+          <a href="/About">About</a>
+          <a href="/Sponsors">Sponsors</a>
         </div>
 
         {/* SOCIAL */}
