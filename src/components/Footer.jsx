@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -20,15 +22,15 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* QUICK LINKS */}
+        {/* 🔥 QUICK LINKS (FIXED) */}
         <div className="col">
           <h3>QUICK LINKS</h3>
 
-          <a href="/">Home</a>
-          <a href="/Team">Team</a>
-          <a href="/Bikes">Bikes</a>
-          <a href="/About">About</a>
-          <a href="/Sponsors">Sponsors</a>
+          <Link to="/">Home</Link>
+          <Link to="/team">Team</Link>
+          <Link to="/bikes">Bikes</Link>
+          <Link to="/about">About</Link>
+          <Link to="/sponsors">Sponsors</Link>
         </div>
 
         {/* SOCIAL */}
@@ -84,7 +86,7 @@ export default function Footer() {
           opacity: 0.9;
         }
 
-        /* COLUMN */
+        /* HEADINGS */
         .col h3 {
           font-size: 14px;
           letter-spacing: 1px;
@@ -92,12 +94,13 @@ export default function Footer() {
           opacity: 0.8;
         }
 
-        /* 🔥 FIXED LINK VISIBILITY */
+        /* 🔥 LINK STYLE (VISIBLE + SCOPED ONLY TO FOOTER) */
         .footer .col a {
           display: block;
           font-size: 14px;
-          color: rgba(255,255,255,0.9); /* 🔥 brighter */
+          color: rgba(255,255,255,0.9);
           margin-bottom: 8px;
+          text-decoration: none;
           transition: 0.3s;
         }
 
@@ -115,7 +118,6 @@ export default function Footer() {
         .icon {
           width: 44px;
           height: 44px;
-
           display: flex;
           align-items: center;
           justify-content: center;
@@ -144,7 +146,7 @@ export default function Footer() {
           opacity: 0.5;
         }
 
-        /* 📱 MOBILE FIX */
+        /* 📱 MOBILE */
         @media (max-width: 768px) {
 
           .footer {
@@ -154,7 +156,7 @@ export default function Footer() {
           .footerGrid {
             grid-template-columns: 1fr;
             gap: 30px;
-            text-align: left; /* 🔥 LEFT ALIGN ALL */
+            text-align: left; /* 🔥 LEFT ALIGN */
           }
 
           .leftCol {
