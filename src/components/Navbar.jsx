@@ -62,11 +62,11 @@ export default function Navbar() {
           justify-content: space-between;
           align-items: center;
 
-          padding: 16px 40px; /* 🔥 matches container */
+          padding: 16px 40px;
 
           backdrop-filter: blur(14px);
-          background: rgba(0,0,0,0.7);
-          border-bottom: 1px solid rgba(255,255,255,0.08);
+          background: rgba(0,0,0,0.75);
+          border-bottom: 1px solid rgba(255,0,0,0.15);
 
           box-sizing: border-box;
         }
@@ -78,14 +78,16 @@ export default function Navbar() {
           font-size: 18px;
           margin: 0;
 
-          background: linear-gradient(90deg, #fff, #00f0ff);
+          background: linear-gradient(90deg, #ffffff, #ff1e1e);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
+
+          text-shadow: 0 0 12px rgba(255,0,0,0.4);
         }
 
         /* HAMBURGER */
         .hamburger {
-          width: 30px; /* 🔥 bigger for touch */
+          width: 30px;
           height: 22px;
           display: flex;
           flex-direction: column;
@@ -98,9 +100,10 @@ export default function Navbar() {
         .hamburger span {
           height: 3px;
           width: 100%;
-          background: linear-gradient(90deg, #fff, #00f0ff);
+          background: linear-gradient(90deg, #ffffff, #ff1e1e);
           border-radius: 3px;
-          box-shadow: 0 0 6px rgba(0,191,255,0.6);
+
+          box-shadow: 0 0 8px rgba(255,0,0,0.7);
           transition: 0.3s;
         }
 
@@ -121,14 +124,14 @@ export default function Navbar() {
         .menuOverlay {
           position: fixed;
           inset: 0;
-          background: #000;
+          background: radial-gradient(circle at center, #0a0000, #000);
           z-index: 999;
 
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          gap: 30px;
+          gap: 32px;
 
           opacity: 0;
           pointer-events: none;
@@ -147,16 +150,19 @@ export default function Navbar() {
           letter-spacing: 2px;
           text-transform: uppercase;
 
-          color: rgba(255,255,255,0.8);
+          color: rgba(255,255,255,0.85);
           position: relative;
           transition: 0.3s;
         }
 
+        /* 🔥 HOVER */
         .menuLink:hover {
           transform: translateY(-6px);
-          color: white;
+          color: #ffffff;
+          text-shadow: 0 0 15px rgba(255,0,0,0.6);
         }
 
+        /* 🔥 UNDERLINE */
         .menuLink::after {
           content: "";
           position: absolute;
@@ -166,7 +172,7 @@ export default function Navbar() {
           width: 0%;
           height: 2px;
 
-          background: linear-gradient(90deg, #00f0ff, #0072ff);
+          background: linear-gradient(90deg, #ff1e1e, #ff4d4d);
           transform: translateX(-50%);
           transition: 0.3s;
         }
@@ -175,8 +181,10 @@ export default function Navbar() {
           width: 100%;
         }
 
+        /* 🔥 ACTIVE */
         .menuLink.active {
-          color: #00f0ff;
+          color: #ff1e1e;
+          text-shadow: 0 0 12px rgba(255,0,0,0.7);
         }
 
         .menuLink.active::after {
@@ -187,11 +195,11 @@ export default function Navbar() {
         @media (max-width: 768px) {
 
           .navbar {
-            padding: 14px 20px; /* 🔥 tighter mobile */
+            padding: 14px 20px;
           }
 
           .menuLink {
-            font-size: 22px; /* 🔥 better fit */
+            font-size: 22px;
           }
 
         }

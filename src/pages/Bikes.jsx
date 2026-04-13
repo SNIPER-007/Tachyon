@@ -9,7 +9,6 @@ export default function Bikes() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const navigate = useNavigate()
 
-  /* 🔥 RESPONSIVE DETECTION */
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768)
@@ -94,8 +93,8 @@ export default function Bikes() {
   padding: 120px 20px 100px;
 
   background:
-    radial-gradient(circle at 30% 20%, rgba(0,191,255,0.08), transparent),
-    radial-gradient(circle at 80% 80%, rgba(255,0,0,0.06), transparent),
+    radial-gradient(circle at 30% 20%, rgba(255,0,0,0.08), transparent),
+    radial-gradient(circle at 80% 80%, rgba(255,0,0,0.05), transparent),
     #000;
 }
 
@@ -104,6 +103,7 @@ export default function Bikes() {
   margin-bottom: 70px;
 }
 
+/* CONTAINER */
 .bikeContainer {
   display: flex;
   gap: 20px;
@@ -125,22 +125,24 @@ export default function Bikes() {
   transition: all 0.5s ease;
 
   background: linear-gradient(145deg, #0a0a0a, #050505);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.08);
 
-  filter: brightness(0.7);
+  filter: brightness(0.75);
 }
 
 .bikeCard:hover {
   filter: brightness(1);
 }
 
+/* 🔥 ACTIVE CARD */
 .bikeCard.active {
   flex: 4;
-  background: linear-gradient(135deg, #0a1f2c, #000);
+
+  background: linear-gradient(135deg, #140000, #000);
 
   box-shadow:
-    0 0 40px rgba(0,191,255,0.25),
-    0 0 80px rgba(0,191,255,0.1);
+    0 0 40px rgba(255,0,0,0.25),
+    0 0 80px rgba(255,0,0,0.08);
 }
 
 /* SIDE TEXT */
@@ -181,6 +183,11 @@ export default function Bikes() {
   height: 220px;
   object-fit: contain;
   margin-top: 10px;
+  transition: 0.4s;
+}
+
+.bikeCard.active .content img {
+  transform: scale(1.05);
 }
 
 /* TEXT */
@@ -197,15 +204,24 @@ export default function Bikes() {
 .content button {
   margin-bottom: 10px;
   padding: 12px 24px;
+
   background: linear-gradient(45deg, #ff0000, #ff4d4d);
   border: none;
   border-radius: 6px;
   color: white;
+
   font-weight: 600;
   cursor: pointer;
+
+  transition: 0.3s;
 }
 
-/* 📱 MOBILE (FINAL FIX) */
+.content button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(255,0,0,0.7);
+}
+
+/* 📱 MOBILE */
 @media (max-width: 768px) {
 
   .bikeContainer {
@@ -222,7 +238,7 @@ export default function Bikes() {
 
   .content {
     position: relative;
-    opacity: 1; /* 🔥 ALWAYS VISIBLE */
+    opacity: 1;
   }
 
   .content img {

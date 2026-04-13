@@ -1,4 +1,4 @@
-// based on your uploaded file :contentReference[oaicite:0]{index=0}
+// same imports (unchanged)
 
 import { useParams } from "react-router-dom"
 import Navbar from "../components/Navbar"
@@ -16,7 +16,6 @@ export default function BikeDetails(){
     useEffect(() => {
       let start = 0
       const end = parseInt(value)
-
       if (isNaN(end)) return
 
       const duration = 1000
@@ -156,7 +155,10 @@ export default function BikeDetails(){
 
         .bikeDetails {
           padding: 120px 0;
-          background: radial-gradient(circle at center, #111 0%, #000 100%);
+          background:
+            radial-gradient(circle at 30% 20%, rgba(255,0,0,0.08), transparent),
+            radial-gradient(circle at 80% 80%, rgba(255,0,0,0.05), transparent),
+            #000;
         }
 
         .title {
@@ -171,10 +173,14 @@ export default function BikeDetails(){
           align-items: center;
         }
 
+        /* 🔥 IMAGE */
         .imageBox img {
           width: 100%;
           border-radius: 14px;
-          box-shadow: 0 0 40px rgba(0,191,255,0.2);
+
+          box-shadow:
+            0 0 40px rgba(255,0,0,0.25),
+            0 0 80px rgba(255,0,0,0.08);
         }
 
         .desc {
@@ -182,6 +188,7 @@ export default function BikeDetails(){
           opacity: 0.8;
         }
 
+        /* 🔥 SPEC GRID */
         .specGrid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
@@ -189,12 +196,21 @@ export default function BikeDetails(){
         }
 
         .specCard {
-          background: rgba(255,255,255,0.05);
+          background: rgba(255,255,255,0.04);
           backdrop-filter: blur(10px);
+
           padding: 18px;
           border-radius: 12px;
+
+          border: 1px solid rgba(255,255,255,0.08);
+
           text-align: center;
-          border: 1px solid rgba(255,255,255,0.1);
+          transition: 0.3s;
+        }
+
+        .specCard:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 0 20px rgba(255,0,0,0.4);
         }
 
         .icon {
@@ -218,6 +234,8 @@ export default function BikeDetails(){
           max-width: 500px;
           border-radius: 12px;
           margin-bottom: 20px;
+
+          box-shadow: 0 0 30px rgba(255,0,0,0.2);
         }
 
         .teamBox p {
@@ -235,7 +253,7 @@ export default function BikeDetails(){
           }
 
           .imageBox img {
-            max-height: 250px; /* 🔥 KEY FIX */
+            max-height: 250px;
             object-fit: contain;
           }
 

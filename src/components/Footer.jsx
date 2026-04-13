@@ -22,7 +22,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* 🔥 QUICK LINKS (FIXED) */}
+        {/* QUICK LINKS */}
         <div className="col">
           <h3>QUICK LINKS</h3>
 
@@ -56,7 +56,10 @@ export default function Footer() {
         {`
 
         .footer {
-          background: linear-gradient(to top, #000, #0a0a0a);
+          background:
+            radial-gradient(circle at top, rgba(255,0,0,0.08), transparent),
+            linear-gradient(to top, #000, #0a0a0a);
+
           padding: 80px 0 20px;
           border-top: 1px solid rgba(255,255,255,0.08);
         }
@@ -68,11 +71,14 @@ export default function Footer() {
           align-items: start;
         }
 
-        /* LEFT */
+        /* 🔥 LOGO */
         .leftCol .logo {
           letter-spacing: 4px;
           margin-bottom: 15px;
-          text-shadow: 0 0 20px rgba(0,191,255,0.4);
+
+          text-shadow:
+            0 0 15px rgba(255,0,0,0.6),
+            0 0 30px rgba(255,0,0,0.2);
         }
 
         .address {
@@ -94,21 +100,22 @@ export default function Footer() {
           opacity: 0.8;
         }
 
-        /* 🔥 LINK STYLE (VISIBLE + SCOPED ONLY TO FOOTER) */
+        /* 🔥 LINKS */
         .footer .col a {
           display: block;
           font-size: 14px;
-          color: rgba(255,255,255,0.9);
+          color: rgba(255,255,255,0.85);
           margin-bottom: 8px;
           text-decoration: none;
           transition: 0.3s;
         }
 
         .footer .col a:hover {
-          color: #00f0ff;
+          color: #ff1e1e;
+          transform: translateX(4px);
         }
 
-        /* SOCIAL */
+        /* 🔥 SOCIAL */
         .icons {
           display: flex;
           gap: 12px;
@@ -130,10 +137,11 @@ export default function Footer() {
         }
 
         .icon:hover {
-          background: #00f0ff;
+          background: #ff1e1e;
           color: black;
+
           transform: translateY(-4px);
-          box-shadow: 0 0 15px rgba(0,191,255,0.6);
+          box-shadow: 0 0 20px rgba(255,0,0,0.6);
         }
 
         /* BOTTOM */
@@ -156,13 +164,10 @@ export default function Footer() {
           .footerGrid {
             grid-template-columns: 1fr;
             gap: 30px;
-            text-align: left; /* 🔥 LEFT ALIGN */
-          }
-
-          .leftCol {
             text-align: left;
           }
 
+          .leftCol,
           .col {
             text-align: left;
           }

@@ -5,6 +5,15 @@
   box-sizing: border-box;
 }
 
+/* 🔥 COLOR SYSTEM (FERRARI THEME) */
+:root {
+  --primary: #ff1e1e;
+  --accent: #ff4d4d;
+  --deep-red: #1a0000;
+  --glow: rgba(255, 0, 0, 0.6);
+  --soft-glow: rgba(255, 0, 0, 0.2);
+}
+
 /* 🔥 ROOT THEME */
 html, body {
   width: 100%;
@@ -20,12 +29,12 @@ html, body {
   padding-top: 90px;
 }
 
-/* 🔥 CONTAINER SYSTEM (VERY IMPORTANT) */
+/* 🔥 CONTAINER SYSTEM */
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 60px; /* 🔥 desktop breathing space */
+  padding: 0 60px;
 }
 
 /* 🔥 SECTION SYSTEM */
@@ -47,14 +56,14 @@ h1, h2, h3 {
 h1 {
   font-size: 56px;
   letter-spacing: 4px;
-  text-shadow: 0 0 20px rgba(0,191,255,0.15);
+  text-shadow: 0 0 25px var(--soft-glow);
 }
 
 /* SECTION HEADINGS */
 h2 {
   font-size: 30px;
   letter-spacing: 2px;
-  text-shadow: 0 0 15px rgba(0,191,255,0.12);
+  text-shadow: 0 0 20px var(--soft-glow);
 }
 
 /* SUB HEADINGS */
@@ -126,7 +135,7 @@ img {
   }
 
   .container {
-    padding: 0 20px; /* 🔥 PERFECT MOBILE */
+    padding: 0 20px;
   }
 
   h1 {

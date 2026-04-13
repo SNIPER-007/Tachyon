@@ -56,7 +56,6 @@ export default function Team(){
             </div>
           </motion.div>
 
-          {/* 🔥 GRID WRAPPER (KEY FIX) */}
           <div style={{ padding: "0 10px" }}>
 
             <div className="teamGrid">
@@ -95,7 +94,7 @@ export default function Team(){
   padding: 120px 0 120px;
 
   background:
-    radial-gradient(circle at 30% 20%, rgba(0,191,255,0.08), transparent),
+    radial-gradient(circle at 30% 20%, rgba(255,0,0,0.08), transparent),
     radial-gradient(circle at 80% 80%, rgba(255,0,0,0.05), transparent),
     #000;
 }
@@ -105,7 +104,7 @@ h1 {
   margin-bottom: 70px;
 }
 
-/* CAPTAIN */
+/* 🔥 CAPTAIN */
 .captain {
   display: flex;
   gap: 40px;
@@ -115,14 +114,14 @@ h1 {
   padding: 30px;
   border-radius: 18px;
 
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.08);
   margin-bottom: 80px;
 
   transition: 0.4s;
 }
 
 .captain:hover {
-  box-shadow: 0 0 40px rgba(0,191,255,0.25);
+  box-shadow: 0 0 40px rgba(255,0,0,0.25);
 }
 
 .captain img {
@@ -130,6 +129,8 @@ h1 {
   height: 280px;
   object-fit: cover;
   border-radius: 14px;
+
+  box-shadow: 0 0 30px rgba(255,0,0,0.2);
 }
 
 /* INFO */
@@ -145,7 +146,7 @@ h1 {
 .line {
   width: 60px;
   height: 2px;
-  background: #00f0ff;
+  background: linear-gradient(90deg, #ff0000, #ff4d4d);
   margin: 15px 0;
 }
 
@@ -171,13 +172,18 @@ h1 {
 
 .teamCard img {
   width: 100%;
-  height: 240px; /* 🔥 better proportion */
+  height: 240px;
   object-fit: cover;
   transition: 0.4s;
 }
 
 .teamCard:hover img {
   transform: scale(1.08);
+}
+
+/* 🔥 HOVER GLOW */
+.teamCard:hover {
+  box-shadow: 0 0 25px rgba(255,0,0,0.3);
 }
 
 /* OVERLAY */
@@ -187,7 +193,7 @@ h1 {
   width: 100%;
   padding: 16px;
 
-  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
 }
 
 .overlay p {

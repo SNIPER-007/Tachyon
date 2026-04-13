@@ -7,12 +7,12 @@ export default function Loader({ children }) {
 
   useEffect(() => {
     const timer1 = setTimeout(() => {
-      setFadeOut(true) // 🔥 start exit animation
+      setFadeOut(true)
     }, 1400)
 
     const timer2 = setTimeout(() => {
-      setLoading(false) // 🔥 remove loader
-    }, 1700)
+      setLoading(false)
+    }, 1750)
 
     return () => {
       clearTimeout(timer1)
@@ -41,12 +41,12 @@ export default function Loader({ children }) {
             align-items: center;
 
             background:
-              radial-gradient(circle at center, #050b12, #000);
+              radial-gradient(circle at center, #140000, #000);
 
-            transition: opacity 0.4s ease;
+            transition: opacity 0.5s ease;
           }
 
-          /* 🔥 EXIT ANIMATION */
+          /* EXIT */
           .fadeOut {
             opacity: 0;
           }
@@ -57,12 +57,14 @@ export default function Loader({ children }) {
             letter-spacing: 6px;
 
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(25px);
 
-            animation: logoEnter 0.8s ease forwards;
+            animation:
+              logoEnter 0.8s ease forwards,
+              pulse 2.2s infinite ease-in-out;
 
             text-shadow:
-              0 0 25px rgba(0,191,255,0.6);
+              0 0 20px rgba(255,0,0,0.6);
           }
 
           @keyframes logoEnter {
@@ -72,37 +74,48 @@ export default function Loader({ children }) {
             }
           }
 
-          /* 🔥 GLOW PULSE */
-          .logo {
-            animation:
-              logoEnter 0.8s ease forwards,
-              pulse 2s infinite ease-in-out;
-          }
-
+          /* 🔥 SMOOTH GLOW (LESS HARSH) */
           @keyframes pulse {
             0%,100% {
-              text-shadow: 0 0 20px rgba(0,191,255,0.5);
+              text-shadow: 0 0 18px rgba(255,0,0,0.5);
             }
             50% {
-              text-shadow: 0 0 40px rgba(0,191,255,0.9);
+              text-shadow: 0 0 35px rgba(255,0,0,0.9);
             }
           }
 
-          /* LINE */
+          /* 🔥 RACING LINE */
           .line {
-            margin-top: 25px;
-            width: 240px;
+            margin-top: 28px;
+            width: 260px;
             height: 2px;
 
-            background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+            background: linear-gradient(
+              90deg,
+              transparent,
+              #ff0000,
+              #ff4d4d,
+              transparent
+            );
 
-            animation: load 1.2s infinite ease-in-out;
+            animation: load 1.3s ease-in-out infinite;
           }
 
           @keyframes load {
-            0% { transform: translateX(-100%); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(100%); opacity: 0; }
+            0% {
+              transform: translateX(-120%);
+              opacity: 0;
+            }
+            30% {
+              opacity: 1;
+            }
+            70% {
+              opacity: 1;
+            }
+            100% {
+              transform: translateX(120%);
+              opacity: 0;
+            }
           }
 
         `}</style>
