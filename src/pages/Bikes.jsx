@@ -9,6 +9,7 @@ export default function Bikes() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const navigate = useNavigate()
 
+  /* 🔥 RESPONSIVE DETECTION */
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768)
@@ -18,24 +19,16 @@ export default function Bikes() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  const bikes = [
-    {
-      name: "Tachyon X1",
-      desc: "High performance racing machine",
-      img: "/bikes/x1.jpg",
-      id: "x1"
-    },
-    {
-      name: "Tachyon X2",
-      desc: "Advanced aerodynamics and speed",
-      img: "/bikes/x2.jpeg",
-      id: "x2"
-    }
-  ]
+  const bike = {
+    name: "TBD",
+    img: "/bikes/tbd.jpg",
+    id: "tbd"
+  }
 
-  const handleClick = (i) => {
+  /* 🔥 MOBILE TAP TO EXPAND */
+  const handleClick = () => {
     if (isMobile) {
-      setActive(active === i ? null : i)
+      setActive(active === 0 ? null : 0)
     }
   }
 
@@ -47,40 +40,41 @@ export default function Bikes() {
 
         <div className="container">
 
-          <h1 className="title">Our Motorcycles</h1>
+          <h1 className="title">Our Machine</h1>
 
           <div className="bikeContainer">
 
-            {bikes.map((bike, i) => (
-              <div
-                key={i}
-                className={`bikeCard ${active === i ? "active" : ""}`}
-                onMouseEnter={!isMobile ? () => setActive(i) : undefined}
-                onMouseLeave={!isMobile ? () => setActive(null) : undefined}
-                onClick={() => handleClick(i)}
-              >
+            <div
+              className={`bikeCard ${active === 0 ? "active" : ""}`}
+              onMouseEnter={!isMobile ? () => setActive(0) : undefined}
+              onMouseLeave={!isMobile ? () => setActive(null) : undefined}
+              onClick={handleClick}
+            >
 
-                {!isMobile && (
-                  <div className="rotatedText">
-                    {bike.name}
-                  </div>
-                )}
-
-                <div className="content">
-
-                  <img src={bike.img} alt={bike.name} />
-
-                  <h2>{bike.name}</h2>
-                  <p>{bike.desc}</p>
-
-                  <button onClick={() => navigate(`/bikes/${bike.id}`)}>
-                    Explore Machine
-                  </button>
-
+              {/* 🔥 SIDE TEXT */}
+              {!isMobile && (
+                <div className="rotatedText">
+                  {bike.name}
                 </div>
+              )}
+
+              {/* 🔥 CONTENT */}
+              <div className="content">
+
+                <img src={bike.img} alt="Bike" />
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation() // 🔥 prevent card toggle conflict
+                    navigate(`/bikes/${bike.id}`)
+                  }}
+                >
+                  More Details
+                </button>
 
               </div>
-            ))}
+
+            </div>
 
           </div>
 
@@ -103,16 +97,19 @@ export default function Bikes() {
   margin-bottom: 70px;
 }
 
-/* CONTAINER */
+/* 🔥 CONTAINER */
 .bikeContainer {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
   height: 420px;
 }
 
-/* CARD */
+/* 🔥 CARD */
 .bikeCard {
-  flex: 1;
+  width: 120px;
+  height: 100%;
+
   position: relative;
   border-radius: 18px;
   overflow: hidden;
@@ -127,25 +124,25 @@ export default function Bikes() {
   background: linear-gradient(145deg, #0a0a0a, #050505);
   border: 1px solid rgba(255,255,255,0.08);
 
-  filter: brightness(0.75);
+  filter: brightness(0.7);
 }
 
 .bikeCard:hover {
   filter: brightness(1);
 }
 
-/* 🔥 ACTIVE CARD */
+/* 🔥 EXPAND */
 .bikeCard.active {
-  flex: 4;
+  width: 700px;
 
   background: linear-gradient(135deg, #140000, #000);
 
   box-shadow:
     0 0 40px rgba(255,0,0,0.25),
-    0 0 80px rgba(255,0,0,0.08);
+    0 0 80px rgba(255,0,0,0.1);
 }
 
-/* SIDE TEXT */
+/* 🔥 SIDE TEXT */
 .rotatedText {
   transform: rotate(-90deg);
   font-size: 18px;
@@ -157,7 +154,7 @@ export default function Bikes() {
   opacity: 0;
 }
 
-/* CONTENT */
+/* 🔥 CONTENT */
 .content {
   position: absolute;
   inset: 0;
@@ -165,45 +162,29 @@ export default function Bikes() {
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 
+  gap: 20px;
   padding: 20px;
-  text-align: center;
 
-  transition: 0.5s;
+  transition: 0.4s;
 }
 
 .bikeCard.active .content {
   opacity: 1;
 }
 
-/* IMAGE */
+/* 🔥 IMAGE */
 .content img {
   width: 100%;
-  height: 220px;
+  max-height: 260px;
   object-fit: contain;
-  margin-top: 10px;
-  transition: 0.4s;
 }
 
-.bikeCard.active .content img {
-  transform: scale(1.05);
-}
-
-/* TEXT */
-.content h2 {
-  margin-top: 10px;
-}
-
-.content p {
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-/* BUTTON */
-.content button {
-  margin-bottom: 10px;
-  padding: 12px 24px;
+/* 🔥 BUTTON */
+button {
+  padding: 12px 26px;
 
   background: linear-gradient(45deg, #ff0000, #ff4d4d);
   border: none;
@@ -212,11 +193,10 @@ export default function Bikes() {
 
   font-weight: 600;
   cursor: pointer;
-
   transition: 0.3s;
 }
 
-.content button:hover {
+button:hover {
   transform: scale(1.08);
   box-shadow: 0 0 25px rgba(255,0,0,0.7);
 }
@@ -225,12 +205,11 @@ export default function Bikes() {
 @media (max-width: 768px) {
 
   .bikeContainer {
-    flex-direction: column;
     height: auto;
-    gap: 25px;
   }
 
   .bikeCard {
+    width: 100%;
     height: auto;
     padding: 20px;
     filter: brightness(1);
@@ -242,7 +221,7 @@ export default function Bikes() {
   }
 
   .content img {
-    height: 180px;
+    max-height: 200px;
   }
 
 }

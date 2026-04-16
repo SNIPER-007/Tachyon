@@ -1,73 +1,24 @@
-// same imports (unchanged)
-
 import { useParams } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
 
 export default function BikeDetails(){
 
   const { id } = useParams()
 
-  function CountUp({ value }) {
-    const [count, setCount] = useState(0)
-
-    useEffect(() => {
-      let start = 0
-      const end = parseInt(value)
-      if (isNaN(end)) return
-
-      const duration = 1000
-      const increment = end / (duration / 16)
-
-      const counter = setInterval(() => {
-        start += increment
-        if (start >= end) {
-          setCount(end)
-          clearInterval(counter)
-        } else {
-          setCount(Math.floor(start))
-        }
-      }, 16)
-
-      return () => clearInterval(counter)
-    }, [value])
-
-    return <span>{count}</span>
+  const bike = {
+    name: "TBD",
+    image: "/bikes/tbd.jpg",
+    desc: "Our first-generation Formula Student motorcycle, engineered with a focus on performance, precision, and innovation. Currently under development by the Tachyon team.",
+    specs: [
+      { label: "Engine", value: "250", unit: "cc", icon: "⚙️" },
+      { label: "Power", value: "40", unit: "BHP", icon: "⚡" },
+      { label: "Weight", value: "TBA", unit: "", icon: "⚖️" },
+      { label: "Top Speed", value: "TBA", unit: "", icon: "🏎️" },
+      { label: "Chassis", value: "Steel", unit: "", icon: "🧱" }
+    ]
   }
-
-  const bikes = {
-    x1: {
-      name: "Tachyon X1",
-      image: "/bikes/x1.jpg",
-      desc: "Lightweight track-focused machine built for agility and control.",
-      specs: [
-        { label: "Engine", value: "250", unit: "cc", icon: "⚙️" },
-        { label: "Power", value: "32", unit: "BHP", icon: "⚡" },
-        { label: "Torque", value: "24", unit: "Nm", icon: "🔩" },
-        { label: "Top Speed", value: "180", unit: "km/h", icon: "🏎️" },
-        { label: "Weight", value: "140", unit: "kg", icon: "⚖️" },
-        { label: "Chassis", value: "Aluminium", unit: "", icon: "🧱" }
-      ]
-    },
-
-    x2: {
-      name: "Tachyon X2",
-      image: "/bikes/x2.jpeg",
-      desc: "Advanced aerodynamic design with enhanced speed and stability.",
-      specs: [
-        { label: "Engine", value: "300", unit: "cc", icon: "⚙️" },
-        { label: "Power", value: "40", unit: "BHP", icon: "⚡" },
-        { label: "Torque", value: "28", unit: "Nm", icon: "🔩" },
-        { label: "Top Speed", value: "200", unit: "km/h", icon: "🏎️" },
-        { label: "Weight", value: "135", unit: "kg", icon: "⚖️" },
-        { label: "Chassis", value: "Carbon", unit: "", icon: "🧱" }
-      ]
-    }
-  }
-
-  const bike = bikes[id]
 
   return(
     <>
@@ -87,16 +38,16 @@ export default function BikeDetails(){
 
           <div className="grid">
 
-            {/* IMAGE */}
+            {/* 🔥 IMAGE */}
             <motion.div
               initial={{ opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
               className="imageBox"
             >
-              <img src={bike.image} alt={bike.name}/>
+              <img src={bike.image} alt="Bike"/>
             </motion.div>
 
-            {/* INFO */}
+            {/* 🔥 INFO */}
             <motion.div
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
@@ -118,9 +69,7 @@ export default function BikeDetails(){
                     <h4>{spec.label}</h4>
 
                     <p className="value">
-                      {isNaN(spec.value)
-                        ? spec.value
-                        : <CountUp value={spec.value} />}
+                      {spec.value}
                       <span> {spec.unit}</span>
                     </p>
 
@@ -132,17 +81,24 @@ export default function BikeDetails(){
 
           </div>
 
-          {/* TEAM */}
+          {/* 🔥 TEAM SECTION */}
           <div className="teamSection">
+
             <h2>Team Behind the Machine</h2>
 
             <div className="teamBox">
+
+              {/* 🔥 EMPTY IMAGE FOR NOW */}
               <img src="/team/team.jpg" alt="team"/>
+
               <p>
-                Designed and engineered by a passionate team specializing in
-                mechanical systems, aerodynamics, and electronics integration.
+                This machine is being developed by a multidisciplinary team
+                working across design, aerodynamics, electronics, and performance
+                engineering — pushing boundaries to build our first competitive race bike.
               </p>
+
             </div>
+
           </div>
 
         </div>
@@ -223,7 +179,7 @@ export default function BikeDetails(){
           font-weight: 600;
         }
 
-        /* TEAM */
+        /* 🔥 TEAM */
         .teamSection {
           margin-top: 100px;
           text-align: center;

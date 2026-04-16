@@ -4,24 +4,77 @@ import { motion } from "framer-motion"
 
 export default function Team(){
 
+  const getImg = (name) =>
+    `/team/${name.toLowerCase().replace(/\s+/g, "")}.jpeg`
+
   const captain = {
-    name: "Team Captain",
-    role: "Mechanical Engineering",
-    img: "/team/captain.jpg"
+    name: "Abbubakar Danesh Shaikh",
+    role: "Team Captain",
+    email: ""
   }
 
-  const members = [
+  const core = [
     {
-      name: "Design Lead",
-      role: "Chassis & Aero",
-      img: "/team/design.jpg"
+      name: "Abdur Rahman Khan",
+      role: "Chief Operations Officer",
+      email: ""
     },
     {
-      name: "Electronics Lead",
-      role: "ECU & Sensors",
-      img: "/team/electronics.jpg"
+      name: "Shreedhaval Damle",
+      role: "Mechanical Lead",
+      email: ""
     }
   ]
+
+  const engineering = [
+    { name: "Yashraj Chauhan", role: "Chassis Engineer" },
+    { name: "Ranbeer Raja", role: "Chassis Engineer" },
+    { name: "Tanish Chachad", role: "Aerodynamics Engineer" },
+    { name: "Shubham Ghosalkar", role: "Brakes Engineer" },
+    { name: "Mayank Koli", role: "Chassis Engineer" },
+    { name: "Satakshi Jha", role: "Aerodynamics Engineer" },
+    { name: "Vaishnavi Mandare", role: "Aerodynamics Engineer" },
+    { name: "Vineet Nishar", role: "Harness and Driver Interface" },
+    { name: "Aniket Dakhole", role: "Harness and ECU" },
+    { name: "Renee Desai", role: "Suspension Engineer" },
+    { name: "Tanay Paralkar", role: "Harness and Driver Interface" },
+    { name: "Rehan Alam", role: "Chassis Engineer" },
+    { name: "Vedant Shetty", role: "Brakes Engineer" },
+    { name: "Shivam Ghawale", role: "Suspension Engineer" },
+    { name: "Atharva Chaudhari", role: "Suspension Engineer" }
+  ]
+
+  const marketing = [
+    { name: "Soham Sadavse", role: "Marketing Executive" },
+    { name: "Yash Madhavi", role: "Marketing Executive" },
+    { name: "Aditya Pisal", role: "Marketing Executive" },
+    { name: "Lavanya Desai", role: "Marketing Executive" },
+    { name: "Dhanashree Ankule", role: "Marketing Executive" },
+    { name: "Pratibha Singh", role: "Website Management" },
+    { name: "Chittansh Pancholi", role: "Website Management" },
+    { name: "Maclin Nadar", role: "Content Editor" },
+    { name: "Aditya Khanvilkar", role: "Content Editor" }
+  ]
+
+  const renderCards = (list) =>
+    list.map((m, i) => (
+      <motion.div
+        key={i}
+        className="teamCard"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: i * 0.05 }}
+        viewport={{ once: true }}
+      >
+        <img src={getImg(m.name)} alt={m.name} />
+
+        <div className="overlay">
+          <h3>{m.name}</h3>
+          <p>{m.role}</p>
+          {m.email && <span className="email">{m.email}</span>}
+        </div>
+      </motion.div>
+    ))
 
   return(
     <>
@@ -31,71 +84,40 @@ export default function Team(){
 
         <div className="container">
 
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            Our Team
-          </motion.h1>
+          <h1>Our Team</h1>
 
           {/* 🔥 CAPTAIN */}
-          <motion.div
-            className="captain"
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <img src={captain.img} alt={captain.name} />
+          <div className="captain">
+            <img src={getImg(captain.name)} alt={captain.name} />
 
             <div className="captainInfo">
               <h2>{captain.name}</h2>
               <p>{captain.role}</p>
-
               <div className="line"></div>
-
               <span>Leading performance. Driving innovation.</span>
             </div>
-          </motion.div>
-
-          <div style={{ padding: "0 10px" }}>
-
-            <div className="teamGrid">
-
-              {members.map((member,index)=>(
-                <motion.div
-                  key={index}
-                  className="teamCard"
-
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                >
-
-                  <img src={member.img} alt={member.name} />
-
-                  <div className="overlay">
-                    <h3>{member.name}</h3>
-                    <p>{member.role}</p>
-                  </div>
-
-                </motion.div>
-              ))}
-
-            </div>
-
           </div>
+
+          {/* 🔥 CORE */}
+          <h2 className="sectionTitle">Core Team</h2>
+          <div className="teamGrid">{renderCards(core)}</div>
+
+          {/* 🔥 ENGINEERING */}
+          <h2 className="sectionTitle">Engineering Team</h2>
+          <div className="teamGrid">{renderCards(engineering)}</div>
+
+          {/* 🔥 MARKETING */}
+          <h2 className="sectionTitle">Marketing & Media</h2>
+          <div className="teamGrid">{renderCards(marketing)}</div>
 
         </div>
 
         <style>
 {`
 .teamPage {
-  min-height: 100vh;
-  padding: 120px 0 120px;
-
+  padding: 120px 0;
   background:
     radial-gradient(circle at 30% 20%, rgba(255,0,0,0.08), transparent),
-    radial-gradient(circle at 80% 80%, rgba(255,0,0,0.05), transparent),
     #000;
 }
 
@@ -104,62 +126,35 @@ h1 {
   margin-bottom: 70px;
 }
 
-/* 🔥 CAPTAIN */
+/* CAPTAIN */
 .captain {
   display: flex;
   gap: 40px;
   align-items: center;
-
   background: linear-gradient(145deg, #0a0a0a, #050505);
   padding: 30px;
   border-radius: 18px;
-
   border: 1px solid rgba(255,255,255,0.08);
   margin-bottom: 80px;
-
-  transition: 0.4s;
-}
-
-.captain:hover {
-  box-shadow: 0 0 40px rgba(255,0,0,0.25);
 }
 
 .captain img {
   width: 320px;
-  height: 280px;
+  height: 260px;
   object-fit: cover;
   border-radius: 14px;
-
-  box-shadow: 0 0 30px rgba(255,0,0,0.2);
 }
 
-/* INFO */
-.captainInfo h2 {
-  font-size: 32px;
-}
-
-.captainInfo p {
-  opacity: 0.8;
-  margin-top: 6px;
-}
-
-.line {
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, #ff0000, #ff4d4d);
-  margin: 15px 0;
-}
-
-.captainInfo span {
-  font-size: 14px;
-  opacity: 0.7;
+/* SECTION */
+.sectionTitle {
+  margin: 50px 0 20px;
 }
 
 /* GRID */
 .teamGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 25px;
 }
 
 /* CARD */
@@ -172,7 +167,7 @@ h1 {
 
 .teamCard img {
   width: 100%;
-  height: 240px;
+  height: 230px;
   object-fit: cover;
   transition: 0.4s;
 }
@@ -181,7 +176,6 @@ h1 {
   transform: scale(1.08);
 }
 
-/* 🔥 HOVER GLOW */
 .teamCard:hover {
   box-shadow: 0 0 25px rgba(255,0,0,0.3);
 }
@@ -192,7 +186,6 @@ h1 {
   bottom: 0;
   width: 100%;
   padding: 16px;
-
   background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
 }
 
@@ -201,28 +194,29 @@ h1 {
   opacity: 0.7;
 }
 
-/* 📱 MOBILE */
+/* EMAIL */
+.email {
+  font-size: 12px;
+  opacity: 0;
+  display: block;
+  margin-top: 5px;
+  transition: 0.3s;
+}
+
+.teamCard:hover .email {
+  opacity: 1;
+}
+
+/* MOBILE */
 @media (max-width: 768px) {
-
-  .teamPage {
-    padding: 100px 0 100px;
-  }
-
   .captain {
     flex-direction: column;
     text-align: center;
-    gap: 20px;
   }
 
   .captain img {
     width: 100%;
-    height: 240px;
   }
-
-  .captainInfo h2 {
-    font-size: 22px;
-  }
-
 }
 `}
 </style>

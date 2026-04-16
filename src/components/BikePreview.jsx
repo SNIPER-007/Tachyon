@@ -3,24 +3,13 @@ import { motion } from "framer-motion"
 
 export default function BikePreview() {
 
-  const bikes = [
-    {
-      name: "Tachyon X1",
-      img: "/bikes/x1.jpg"
-    },
-    {
-      name: "Tachyon X2",
-      img: "/bikes/x2.jpeg"
-    }
-  ]
+  const bike = {
+    name: "TBD",
+    img: "/bikes/tbd.jpg"
+  }
 
   return (
-    <section style={{
-      padding: "120px 40px",
-      textAlign: "center",
-      background: "radial-gradient(circle at center, #111 0%, #000 100%)",
-      color: "white"
-    }}>
+    <section className="bikePreviewSection">
 
       {/* 🔥 TITLE */}
       <motion.h2
@@ -28,140 +17,164 @@ export default function BikePreview() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Our Motorcycles
+        Our Machine
       </motion.h2>
 
-      {/* 🔥 PREVIEW CARDS */}
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        gap: "30px",
-        marginTop: "50px",
-        flexWrap: "wrap"
-      }}>
+      {/* 🔥 SINGLE HERO CARD */}
+      <motion.div
+        className="previewWrapper"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+      >
 
-        {bikes.map((bike, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.2 }}
-            viewport={{ once: true }}
+        <div className="previewCard">
 
-            className="previewCard"
+          <img src={bike.img} alt="Bike" />
 
-            onMouseMove={(e) => {
-              const rect = e.currentTarget.getBoundingClientRect()
-              const x = e.clientX - rect.left
-              const y = e.clientY - rect.top
-
-              const centerX = rect.width / 2
-              const centerY = rect.height / 2
-
-              const rotateX = -(y - centerY) / 20
-              const rotateY = (x - centerX) / 20
-
-              e.currentTarget.style.transform =
-                `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
-            }}
-
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform =
-                "rotateX(0deg) rotateY(0deg) scale(1)"
-            }}
-          >
-
-            <img src={bike.img} alt={bike.name} />
-
+          <div className="overlay">
             <h3>{bike.name}</h3>
+            <p>Currently in Development</p>
+          </div>
 
-          </motion.div>
-        ))}
+        </div>
 
-      </div>
+      </motion.div>
 
-      {/* 🔥 BUTTON */}
+      {/* 🔥 CTA */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
+        transition={{ delay: 0.3 }}
       >
         <Link to="/bikes">
-          <button
-            className="ctaBtn"
-
-            onMouseMove={(e) => {
-              const rect = e.currentTarget.getBoundingClientRect()
-              const x = e.clientX - rect.left - rect.width / 2
-              const y = e.clientY - rect.top - rect.height / 2
-
-              e.currentTarget.style.transform =
-                `translate(${x * 0.2}px, ${y * 0.2}px)`
-            }}
-
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translate(0,0)"
-            }}
-          >
-            Explore All Bikes
+          <button className="ctaBtn">
+            View Machine Details
           </button>
         </Link>
       </motion.div>
 
-      {/* 🔥 STYLES */}
       <style>
         {`
-        .previewCard {
-          width: 260px;
-          background: linear-gradient(145deg, #0a0a0a, #050505);
-          border-radius: 14px;
-          padding: 15px;
-          border: 1px solid rgba(255,255,255,0.1);
-          transition: 0.3s;
-          cursor: pointer;
 
-          transform-style: preserve-3d;
-          perspective: 1000px;
+        .bikePreviewSection {
+          padding: 120px 0;
+          text-align: center;
+
+          background:
+            radial-gradient(circle at 30% 20%, rgba(255,0,0,0.08), transparent),
+            radial-gradient(circle at 80% 80%, rgba(255,0,0,0.05), transparent),
+            #000;
+
+          color: white;
+        }
+
+        .previewWrapper {
+          margin-top: 60px;
+          display: flex;
+          justify-content: center;
+        }
+
+        /* 🔥 HERO CARD */
+        .previewCard {
+          width: 100%;
+          max-width: 650px;
+          position: relative;
+
+          border-radius: 18px;
+          overflow: hidden;
+
+          background: linear-gradient(145deg, #0a0a0a, #050505);
+          border: 1px solid rgba(255,255,255,0.08);
+
+          cursor: pointer;
+          transition: 0.4s;
         }
 
         .previewCard:hover {
-          box-shadow: 0 0 25px rgba(0,191,255,0.4);
+          transform: translateY(-10px);
+          box-shadow:
+            0 0 40px rgba(255,0,0,0.25),
+            0 0 80px rgba(255,0,0,0.08);
         }
 
+        /* IMAGE */
         .previewCard img {
           width: 100%;
-          height: 160px;
+          height: 320px;
           object-fit: cover;
-          border-radius: 10px;
-          transition: 0.4s;
+          transition: 0.5s;
         }
 
         .previewCard:hover img {
           transform: scale(1.05);
+          filter: brightness(0.85);
         }
 
-        .previewCard h3 {
-          margin-top: 10px;
-          font-weight: 500;
+        /* 🔥 OVERLAY */
+        .overlay {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          padding: 25px;
+
+          background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+          text-align: left;
         }
 
-        /* BUTTON */
+        .overlay h3 {
+          margin: 0;
+          font-size: 22px;
+        }
+
+        .overlay p {
+          margin-top: 6px;
+          font-size: 14px;
+          opacity: 0.7;
+        }
+
+        /* 🔥 BUTTON */
         .ctaBtn {
-          margin-top: 40px;
-          padding: 12px 30px;
+          margin-top: 50px;
+          padding: 14px 34px;
+
           background: linear-gradient(45deg, #ff0000, #ff4d4d);
           border: none;
           color: white;
+
           border-radius: 6px;
           cursor: pointer;
           font-weight: 600;
+
           transition: 0.3s;
         }
 
         .ctaBtn:hover {
-          transform: scale(1.1);
-          box-shadow: 0 0 20px red;
+          transform: scale(1.05);
+          box-shadow: 0 0 25px rgba(255,0,0,0.6);
         }
+
+        /* 📱 MOBILE */
+        @media (max-width: 768px) {
+
+          .bikePreviewSection {
+            padding: 90px 0;
+          }
+
+          .previewCard img {
+            height: 220px;
+          }
+
+          .overlay {
+            padding: 18px;
+          }
+
+          .overlay h3 {
+            font-size: 18px;
+          }
+
+        }
+
         `}
       </style>
 

@@ -30,11 +30,10 @@ export default function SponsorsCarousel() {
       <div className="carousel">
         <div className="track">
 
-          {[...sponsors, ...sponsors, ...sponsors, ...sponsors].map((s, i) => (
+          {[...sponsors, ...sponsors, ...sponsors].map((s, i) => (
             <div
               key={i}
               className="card"
-
               onClick={() => window.open(s.link, "_blank")}
 
               onMouseMove={(e) => {
@@ -45,11 +44,11 @@ export default function SponsorsCarousel() {
                 const centerX = rect.width / 2
                 const centerY = rect.height / 2
 
-                const rotateX = -(y - centerY) / 25
-                const rotateY = (x - centerX) / 25
+                const rotateX = -(y - centerY) / 30
+                const rotateY = (x - centerX) / 30
 
                 e.currentTarget.style.transform =
-                  `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`
+                  `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`
               }}
 
               onMouseLeave={(e) => {
@@ -72,7 +71,10 @@ export default function SponsorsCarousel() {
 
         .sponsorSection {
           padding: 110px 0;
-          background: #000;
+          background:
+            radial-gradient(circle at center, rgba(255,0,0,0.05), transparent),
+            #000;
+
           overflow: hidden;
           position: relative;
         }
@@ -86,24 +88,24 @@ export default function SponsorsCarousel() {
           overflow: hidden;
         }
 
-        /* 🔥 PERFECT LOOP */
+        /* 🔥 SMOOTHER LOOP */
         .track {
           display: flex;
           gap: 50px;
           width: max-content;
-          animation: scroll 28s linear infinite;
+          animation: scroll 32s linear infinite;
         }
 
         .carousel:hover .track {
           animation-play-state: paused;
         }
 
-        /* CARD */
+        /* 🔥 CARD */
         .card {
           min-width: 220px;
 
           background: rgba(255,255,255,0.03);
-          backdrop-filter: blur(8px);
+          backdrop-filter: blur(10px);
 
           padding: 28px;
           border-radius: 14px;
@@ -112,17 +114,17 @@ export default function SponsorsCarousel() {
           border: 1px solid rgba(255,255,255,0.08);
 
           cursor: pointer;
-          transition: 0.3s;
+          transition: 0.3s ease;
 
           transform-style: preserve-3d;
           perspective: 1000px;
         }
 
-        /* PREMIUM HOVER */
+        /* 🔥 HOVER (FERRARI RED) */
         .card:hover {
           box-shadow:
-            0 0 25px rgba(0,191,255,0.4),
-            0 0 60px rgba(0,191,255,0.15);
+            0 0 25px rgba(255,0,0,0.35),
+            0 0 60px rgba(255,0,0,0.08);
         }
 
         /* IMAGE */
@@ -135,7 +137,7 @@ export default function SponsorsCarousel() {
         }
 
         .card:hover img {
-          filter: grayscale(0%) brightness(1);
+          filter: grayscale(0%) brightness(1.1);
         }
 
         /* TEXT */
@@ -148,14 +150,14 @@ export default function SponsorsCarousel() {
         /* 🔥 TRUE INFINITE */
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-25%); }
+          100% { transform: translateX(-33.33%); }
         }
 
-        /* EDGE FADE STRONGER */
+        /* 🔥 EDGE FADE (STRONGER + CLEAN) */
         .fade-left, .fade-right {
           position: absolute;
           top: 0;
-          width: 140px;
+          width: 160px;
           height: 100%;
           z-index: 2;
           pointer-events: none;
@@ -163,12 +165,31 @@ export default function SponsorsCarousel() {
 
         .fade-left {
           left: 0;
-          background: linear-gradient(to right, #000, transparent);
+          background: linear-gradient(to right, #000 40%, transparent);
         }
 
         .fade-right {
           right: 0;
-          background: linear-gradient(to left, #000, transparent);
+          background: linear-gradient(to left, #000 40%, transparent);
+        }
+
+        /* 📱 MOBILE */
+        @media (max-width: 768px) {
+
+          .track {
+            gap: 30px;
+            animation: scroll 22s linear infinite;
+          }
+
+          .card {
+            min-width: 180px;
+            padding: 20px;
+          }
+
+          .card img {
+            height: 60px;
+          }
+
         }
 
         `}
