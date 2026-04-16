@@ -7,7 +7,8 @@ export default function Sponsors() {
   const sponsors = [
     { name: "ScanEra Digital", img: "/sponsors/scanera.png" },
     { name: "SolidWorks", img: "/sponsors/solidworks.jpg" },
-    { name: "The Riders Syndicate", img: "/sponsors/riders.png" }
+    { name: "The Race Syndicate", img: "/sponsors/race.jpg" },
+    { name: "Torque Block", img: "/sponsors/torqueblock.png" }
   ]
 
   return (

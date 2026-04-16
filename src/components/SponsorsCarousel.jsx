@@ -12,9 +12,14 @@ export default function SponsorsCarousel() {
       link: "https://www.solidworks.com"
     },
     {
-      name: "The Riders Syndicate",
-      img: "/sponsors/riders.png",
-      link: "https://theriderssyndicate.com"
+      name: "The Race Syndicate",
+      img: "/sponsors/race.jpg",
+      link: "https://theracersyndicate.com"
+    },
+    {
+      name: "Torque Block",
+      img: "/sponsors/torqueblock.png",
+      link: "https://torqueblock.com"
     }
   ]
 
