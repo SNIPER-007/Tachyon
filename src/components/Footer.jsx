@@ -4,59 +4,61 @@ export default function Footer() {
   return (
     <footer className="footer">
 
-      <div className="container footerGrid">
+      <div className="container footerTop">
 
         {/* LEFT */}
         <div className="col leftCol">
-          <h2 className="logo">TACHYON</h2>
-
-          <p className="address">
-            KJ Somaiya College of Engineering<br/>
-            Vidyavihar East, Mumbai - 400077<br/>
-            Maharashtra, India
-          </p>
-
-          <p className="contact">
-            tachyonmoto.engg@somaiya.edu<br/>
-            +91 98928 10010
-          </p>
-        </div>
-
-        {/* QUICK LINKS */}
-        <div className="col">
           <h3>QUICK LINKS</h3>
 
-          <Link to="/">Home</Link>
-          <Link to="/team">Team</Link>
-          <Link to="/bikes">Bikes</Link>
-          <Link to="/about">About</Link>
-          <Link to="/sponsors">Sponsors</Link>
+          <div className="links">
+            <Link to="/">Home</Link>
+            <Link to="/team">Team</Link>
+            <Link to="/bikes">Bikes</Link>
+            <Link to="/about">About</Link>
+            <Link to="/sponsors">Sponsors</Link>
+          </div>
         </div>
 
-        {/* SOCIAL */}
-        <div className="col socialCol">
+        {/* CENTER */}
+        <div className="col centerCol">
           <h3>CONNECT</h3>
 
           <div className="icons">
-            <a 
-  href="https://instagram.com/tachyon_moto_india" 
-  target="_blank" 
-  rel="noopener noreferrer"
-  className="icon"
->
-  <img src="/icons/instagram.png" alt="Instagram" />
-</a>
-            <a 
-  href="https://www.linkedin.com/company/tachyon-moto-india/" 
-  target="_blank" 
-  rel="noopener noreferrer"
-  className="icon"
->
-  <img src="/icons/linkedin.png" alt="LinkedIn" />
-</a>
-            {/* <a href="https://www.facebook.com/tachyonmoto" className="icon">📘</a> */}
-            {/* <a href="https://twitter.com/tachyon_moto" className="icon">✖</a> */}
+            <a href="https://instagram.com/tachyon_moto_india" target="_blank" rel="noopener noreferrer" className="icon">
+              <img src="/icons/instagram.png" alt="Instagram" />
+            </a>
+
+            <a href="https://www.linkedin.com/company/tachyon-moto-india/" target="_blank" rel="noopener noreferrer" className="icon">
+              <img src="/icons/linkedin.png" alt="LinkedIn" />
+            </a>
           </div>
+        </div>
+
+        {/* RIGHT */}
+        <div className="col rightCol">
+
+          <div className="rightContent">
+
+            <img 
+              src="/logos/tachyonlogo.png" 
+              alt="Tachyon Moto India" 
+              className="footerLogo"
+            />
+
+            <div className="infoBlock">
+              <p>
+                KJ Somaiya College of Engineering<br/>
+                Vidyavihar East, Mumbai - 400077
+              </p>
+
+              <p>
+                tachyonmoto.engg@somaiya.edu<br/>
+                +91 98928 10010
+              </p>
+            </div>
+
+          </div>
+
         </div>
 
       </div>
@@ -66,103 +68,123 @@ export default function Footer() {
         © 2026 Tachyon Racing Team. All rights reserved.
       </div>
 
-      <style>
-        {`
+      <style>{`
 
         .footer {
           background:
-            radial-gradient(circle at top, rgba(255,0,0,0.08), transparent),
+            radial-gradient(circle at top, rgba(255,0,0,0.06), transparent),
             linear-gradient(to top, #000, #0a0a0a);
 
-          padding: 80px 0 20px;
+          padding: 72px 0 24px; /* 🔥 balanced */
           border-top: 1px solid rgba(255,255,255,0.08);
         }
 
-        .footerGrid {
+        /* 🔥 GRID SYSTEM */
+        .footerTop {
           display: grid;
-          grid-template-columns: 1.5fr 1fr 1fr;
-          gap: 50px;
+          grid-template-columns: 1fr 1fr 1.4fr;
+          gap: 48px; /* 🔥 consistent spacing */
           align-items: start;
         }
 
-        /* 🔥 LOGO */
-        .leftCol .logo {
-          letter-spacing: 4px;
-          margin-bottom: 15px;
-
-          text-shadow:
-            0 0 15px rgba(255,0,0,0.6),
-            0 0 30px rgba(255,0,0,0.2);
-        }
-
-        .address {
-          line-height: 1.6;
-          opacity: 0.7;
-          margin-bottom: 15px;
-        }
-
-        .contact {
-          font-size: 14px;
-          opacity: 0.9;
-        }
-
-        /* HEADINGS */
+        /* 🔥 HEADINGS */
         .col h3 {
-          font-size: 14px;
-          letter-spacing: 1px;
-          margin-bottom: 15px;
-          opacity: 0.8;
+          font-size: 13px;
+          letter-spacing: 1.2px;
+          margin-bottom: 16px;
+          opacity: 0.75;
         }
 
         /* 🔥 LINKS */
-        .footer .col a {
-          display: block;
+        .links {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .links a {
           font-size: 14px;
           color: rgba(255,255,255,0.85);
-          margin-bottom: 8px;
           text-decoration: none;
-          transition: 0.3s;
+          transition: 0.25s;
         }
 
-        .footer .col a:hover {
+        .links a:hover {
           color: #ff1e1e;
-          transform: translateX(4px);
+          transform: translateX(3px);
         }
 
-        /* 🔥 SOCIAL */
+        /* 🔥 CENTER */
+        .centerCol {
+          text-align: center;
+        }
+
         .icons {
           display: flex;
-          gap: 12px;
-          margin-top: 10px;
+          justify-content: center;
+          gap: 16px;
         }
 
         .icon {
           width: 44px;
           height: 44px;
+
           display: flex;
           align-items: center;
           justify-content: center;
 
           border-radius: 50%;
           background: rgba(255,255,255,0.05);
-          font-size: 16px;
 
-          transition: 0.3s;
+          transition: 0.25s ease;
+        }
+
+        .icon img {
+          width: 20px;
+          height: 20px;
         }
 
         .icon:hover {
           background: #ff1e1e;
-          color: black;
-
-          transform: translateY(-4px);
-          box-shadow: 0 0 20px rgba(255,0,0,0.6);
+          transform: translateY(-3px);
+          box-shadow: 0 0 18px rgba(255,0,0,0.6);
         }
 
-        /* BOTTOM */
+        /* 🔥 RIGHT */
+        .rightCol {
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        .rightContent {
+          display: flex;
+          align-items: center;
+          gap: 18px; /* 🔥 key spacing */
+        }
+
+        .footerLogo {
+          width: 130px;
+          flex-shrink: 0;
+        }
+
+        .infoBlock {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .infoBlock p {
+          font-size: 13px;
+          line-height: 1.5;
+          opacity: 0.8;
+          margin: 0;
+        }
+
+        /* 🔥 BOTTOM */
         .footerBottom {
           text-align: center;
-          margin-top: 60px;
-          padding-top: 15px;
+          margin-top: 48px;
+          padding-top: 14px;
           border-top: 1px solid rgba(255,255,255,0.08);
           font-size: 12px;
           opacity: 0.5;
@@ -175,34 +197,32 @@ export default function Footer() {
             padding: 60px 0 20px;
           }
 
-          .footerGrid {
+          .footerTop {
             grid-template-columns: 1fr;
-            gap: 30px;
-            text-align: left;
+            gap: 36px;
           }
 
-          .leftCol,
-          .col {
-            text-align: left;
-          }
-
-          /* 🔥 ONLY SOCIAL CENTER */
-          .socialCol {
+          .centerCol {
             text-align: center;
           }
 
-          .icons {
-            justify-content: center;
+          .rightCol {
+            justify-content: flex-start;
           }
 
-          .footerBottom {
-            margin-top: 40px;
+          .rightContent {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+          }
+
+          .footerLogo {
+            width: 140px;
           }
 
         }
 
-        `}
-      </style>
+      `}</style>
 
     </footer>
   )

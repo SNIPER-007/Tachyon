@@ -4,35 +4,31 @@ import { motion } from "framer-motion"
 
 export default function About(){
 
+  const features = [
+    { title: "Innovation", desc: "Constantly pushing engineering boundaries" },
+    { title: "Performance", desc: "Built for speed and precision" },
+    { title: "Teamwork", desc: "Driven by collaboration and passion" }
+  ]
+
   return(
     <>
       <Navbar/>
 
       <motion.section
-        className="page" /* 🔥 FIX NAVBAR OVERLAP */
-        initial={{ opacity: 0, y: 60 }}
-        animate={{ opacity: 1, y: 0 }}
+        className="aboutPage page"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        style={{
-          minHeight: "100vh",
-          background: "radial-gradient(circle at center, #111 0%, #000 100%)",
-          color: "white"
-        }}
       >
 
-        {/* 🔥 CONTAINER */}
-        <div className="container" style={{ textAlign: "center" }}>
+        <div className="container">
 
           {/* 🔥 TITLE */}
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            style={{
-              fontSize: "60px",
-              letterSpacing: "2px",
-              marginBottom: "20px" /* 🔥 better spacing */
-            }}
+            className="title"
           >
             About Tachyon
           </motion.h1>
@@ -42,13 +38,7 @@ export default function About(){
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            style={{
-              maxWidth: "750px",
-              margin: "30px auto",
-              fontSize: "18px",
-              lineHeight: "1.6",
-              opacity: "0.85"
-            }}
+            className="description"
           >
             Tachyon is a student-driven engineering council focused on designing
             and building high-performance motorcycles. Our team integrates
@@ -57,53 +47,121 @@ export default function About(){
           </motion.p>
 
           {/* 🔥 FEATURES */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            style={{
-              marginTop: "60px",
-              display: "flex",
-              justifyContent: "center",
-              gap: "40px",
-              flexWrap: "wrap"
-            }}
-          >
+          <div className="features">
 
-            {[
-              { title: "Innovation", desc: "Constantly pushing engineering boundaries" },
-              { title: "Performance", desc: "Built for speed and precision" },
-              { title: "Teamwork", desc: "Driven by collaboration and passion" }
-            ].map((item, i) => (
-              <div
+            {features.map((item, i) => (
+              <motion.div
                 key={i}
-                style={{
-                  background: "#111",
-                  padding: "25px",
-                  borderRadius: "12px",
-                  width: "250px",
-                  transition: "0.3s",
-                  cursor: "pointer"
-                }}
-                onMouseEnter={(e)=> {
-                  e.currentTarget.style.transform = "translateY(-10px)"
-                  e.currentTarget.style.boxShadow = "0 0 20px rgba(0,191,255,0.3)"
-                }}
-                onMouseLeave={(e)=> {
-                  e.currentTarget.style.transform = "translateY(0)"
-                  e.currentTarget.style.boxShadow = "none"
-                }}
+                className="featureCard"
+
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }}
+                viewport={{ once: true }}
               >
-                <h3 style={{ marginBottom: "10px" }}>{item.title}</h3>
-                <p style={{ fontSize: "14px", opacity: "0.8" }}>
-                  {item.desc}
-                </p>
-              </div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </motion.div>
             ))}
 
-          </motion.div>
+          </div>
 
         </div>
+
+        <style>{`
+
+        .aboutPage {
+          min-height: 100vh;
+          padding: 120px 0 100px;
+
+          background:
+            radial-gradient(circle at 30% 20%, rgba(255,0,0,0.08), transparent),
+            radial-gradient(circle at 80% 80%, rgba(255,0,0,0.05), transparent),
+            #000;
+        }
+
+        /* 🔥 TITLE */
+        .title {
+          text-align: center;
+          margin-bottom: 20px;
+
+          text-shadow:
+            0 0 20px rgba(255,0,0,0.3);
+        }
+
+        /* 🔥 DESCRIPTION */
+        .description {
+          max-width: 750px;
+          margin: 25px auto 60px;
+          text-align: center;
+
+          font-size: 17px;
+          line-height: 1.7;
+          opacity: 0.85;
+        }
+
+        /* 🔥 FEATURES GRID */
+        .features {
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+          flex-wrap: wrap;
+        }
+
+        /* 🔥 CARD */
+        .featureCard {
+          width: 260px;
+
+          background: linear-gradient(145deg, #0a0a0a, #050505);
+          border-radius: 16px;
+          padding: 26px;
+
+          border: 1px solid rgba(255,255,255,0.08);
+
+          text-align: center;
+          cursor: pointer;
+
+          transition: 0.35s ease;
+        }
+
+        .featureCard:hover {
+          transform: translateY(-10px) scale(1.02);
+
+          box-shadow:
+            0 0 25px rgba(255,0,0,0.35),
+            0 0 60px rgba(255,0,0,0.08);
+        }
+
+        /* TEXT */
+        .featureCard h3 {
+          margin-bottom: 10px;
+        }
+
+        .featureCard p {
+          font-size: 14px;
+          opacity: 0.75;
+        }
+
+        /* 📱 MOBILE */
+        @media (max-width: 768px) {
+
+          .aboutPage {
+            padding: 100px 0 80px;
+          }
+
+          .description {
+            font-size: 15px;
+            margin-bottom: 40px;
+          }
+
+          .featureCard {
+            width: 100%;
+            max-width: 320px;
+          }
+
+        }
+
+        `}</style>
 
       </motion.section>
 
