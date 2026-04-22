@@ -17,8 +17,8 @@ export default function Footer() {
           </p>
 
           <p className="contact">
-            tachyonteam@gmail.com<br/>
-            +91 98765 43210
+            tachyonmoto.engg@somaiya.edu<br/>
+            +91 98928 10010
           </p>
         </div>
 
@@ -38,10 +38,24 @@ export default function Footer() {
           <h3>CONNECT</h3>
 
           <div className="icons">
-            <a href="#" className="icon">📷</a>
-            <a href="#" className="icon">💼</a>
-            <a href="#" className="icon">📘</a>
-            <a href="#" className="icon">✖</a>
+            <a 
+  href="https://instagram.com/tachyon_moto_india" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="icon"
+>
+  <img src="/icons/instagram.png" alt="Instagram" />
+</a>
+            <a 
+  href="https://www.linkedin.com/company/tachyon-moto-india/" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="icon"
+>
+  <img src="/icons/linkedin.png" alt="LinkedIn" />
+</a>
+            {/* <a href="https://www.facebook.com/tachyonmoto" className="icon">📘</a> */}
+            {/* <a href="https://twitter.com/tachyon_moto" className="icon">✖</a> */}
           </div>
         </div>
 

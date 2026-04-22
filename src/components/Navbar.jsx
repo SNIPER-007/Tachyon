@@ -18,8 +18,16 @@ export default function Navbar() {
     <>
       <nav className="navbar">
 
-        {/* 🔥 LOGO */}
-        <h2 className="logo">TACHYON</h2>
+        {/* 🔥 LOGOS */}
+        <div className="logoGroup">
+
+          <img src="/logos/tachyonlogo.png" alt="Tachyon" className="logoImg mainLogo"/>
+
+          <img src="/logos/kjsselogo.png" alt="KJSSE" className="logoImg"/>
+
+          <img src="/logos/trustlogo.jpg" alt="Trust" className="logoImg"/>
+
+        </div>
 
         {/* 🍔 HAMBURGER */}
         <div
@@ -62,7 +70,7 @@ export default function Navbar() {
           justify-content: space-between;
           align-items: center;
 
-          padding: 16px 40px;
+          padding: 14px 40px;
 
           backdrop-filter: blur(14px);
           background: rgba(0,0,0,0.75);
@@ -71,18 +79,28 @@ export default function Navbar() {
           box-sizing: border-box;
         }
 
-        /* LOGO */
-        .logo {
-          font-family: 'Orbitron', sans-serif;
-          letter-spacing: 2px;
-          font-size: 18px;
-          margin: 0;
+        /* 🔥 LOGO GROUP */
+        .logoGroup {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+        }
 
-          background: linear-gradient(90deg, #ffffff, #ff1e1e);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+        .logoImg {
+          height: 32px;
+          object-fit: contain;
+          opacity: 0.9;
+          transition: 0.3s;
+        }
 
-          text-shadow: 0 0 12px rgba(255,0,0,0.4);
+        /* 🔥 MAIN LOGO SLIGHTLY BIGGER */
+        .mainLogo {
+          height: 56px;
+        }
+
+        .logoImg:hover {
+          opacity: 1;
+          transform: scale(1.05);
         }
 
         /* HAMBURGER */
@@ -93,7 +111,6 @@ export default function Navbar() {
           flex-direction: column;
           justify-content: space-between;
           cursor: pointer;
-
           z-index: 1100;
         }
 
@@ -102,12 +119,10 @@ export default function Navbar() {
           width: 100%;
           background: linear-gradient(90deg, #ffffff, #ff1e1e);
           border-radius: 3px;
-
           box-shadow: 0 0 8px rgba(255,0,0,0.7);
           transition: 0.3s;
         }
 
-        /* HAMBURGER ANIMATION */
         .hamburger.active span:nth-child(1) {
           transform: rotate(45deg) translate(5px, 6px);
         }
@@ -143,7 +158,7 @@ export default function Navbar() {
           pointer-events: all;
         }
 
-        /* MENU LINKS */
+        /* LINKS */
         .menuLink {
           font-family: 'Orbitron', sans-serif;
           font-size: 28px;
@@ -155,14 +170,12 @@ export default function Navbar() {
           transition: 0.3s;
         }
 
-        /* 🔥 HOVER */
         .menuLink:hover {
           transform: translateY(-6px);
           color: #ffffff;
           text-shadow: 0 0 15px rgba(255,0,0,0.6);
         }
 
-        /* 🔥 UNDERLINE */
         .menuLink::after {
           content: "";
           position: absolute;
@@ -181,7 +194,6 @@ export default function Navbar() {
           width: 100%;
         }
 
-        /* 🔥 ACTIVE */
         .menuLink.active {
           color: #ff1e1e;
           text-shadow: 0 0 12px rgba(255,0,0,0.7);
@@ -195,8 +207,25 @@ export default function Navbar() {
         @media (max-width: 768px) {
 
           .navbar {
-            padding: 14px 20px;
+            padding: 12px 20px;
           }
+
+          .logoGroup {
+            gap: 10px;
+          }
+
+          .logoImg {
+  height: 32px;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: 0.3s;
+}
+
+/* 🔥 TACHYON LOGO BOOST */
+.mainLogo {
+  height: 56px;   /* 🔥 bigger */
+  transform: scale(1.1); /* slight visual boost */
+}
 
           .menuLink {
             font-size: 22px;
