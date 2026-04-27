@@ -10,19 +10,22 @@ export default function Team(){
   const captain = {
     name: "Abbubakar Danesh Shaikh",
     role: "Team Captain",
-    email: ""
+    email: "",
+    tall: true
   }
 
   const core = [
     {
       name: "Abdur Rahman Khan",
       role: "Chief Operations Officer",
-      email: ""
+      email: "",
+      tall: true
     },
     {
       name: "Shreedhaval Damle",
       role: "Mechanical Lead",
-      email: ""
+      email: "",
+      tall: true
     }
   ]
 
@@ -56,23 +59,35 @@ export default function Team(){
     { name: "Aditya Khanvilkar", role: "Content Editor" }
   ]
 
+  /* 🔥 UPDATED CARD RENDER */
   const renderCards = (list) =>
     list.map((m, i) => (
       <motion.div
         key={i}
-        className="teamCard"
+        className={`teamCard ${m.tall ? "tallCard" : ""}`}
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: i * 0.05 }}
         viewport={{ once: true }}
       >
-        <img src={getImg(m.name)} alt={m.name} />
+
+        <div className="imgWrapper">
+          <img
+  src={getImg(m.name)}
+  alt={m.name}
+  style={{
+    objectPosition: m.tall ? "top" : "center",
+    transform: m.tall ? "scale(0.85)" : "scale(1)"
+  }}
+/>
+        </div>
 
         <div className="overlay">
           <h3>{m.name}</h3>
           <p>{m.role}</p>
           {m.email && <span className="email">{m.email}</span>}
         </div>
+
       </motion.div>
     ))
 
@@ -98,22 +113,22 @@ export default function Team(){
             </div>
           </div>
 
-          {/* 🔥 CORE */}
+          {/* CORE */}
           <h2 className="sectionTitle">Core Team</h2>
           <div className="teamGrid">{renderCards(core)}</div>
 
-          {/* 🔥 ENGINEERING */}
+          {/* ENGINEERING */}
           <h2 className="sectionTitle">Engineering Team</h2>
           <div className="teamGrid">{renderCards(engineering)}</div>
 
-          {/* 🔥 MARKETING */}
+          {/* MARKETING */}
           <h2 className="sectionTitle">Marketing & Media</h2>
           <div className="teamGrid">{renderCards(marketing)}</div>
 
         </div>
 
-        <style>
-{`
+        <style>{`
+
 .teamPage {
   padding: 120px 0;
   background:
@@ -140,9 +155,9 @@ h1 {
 
 .captain img {
   width: 320px;
-  height: 260px;
+  height: 320px;
   object-fit: cover;
-  border-radius: 14px;
+  object-position: top;
 }
 
 /* SECTION */
@@ -165,11 +180,28 @@ h1 {
   cursor: pointer;
 }
 
-.teamCard img {
+/* 🔥 WRAPPER (FIX) */
+.imgWrapper {
   width: 100%;
   height: 230px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-start; /* 🔥 top alignment */
+  justify-content: center;
+}
+
+/* IMAGE */
+.imgWrapper img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: 0.4s;
+}
+
+/* 🔥 TALL FIX */
+.tallCard .imgWrapper {
+  height: 320px;
 }
 
 .teamCard:hover img {
@@ -209,6 +241,7 @@ h1 {
 
 /* MOBILE */
 @media (max-width: 768px) {
+
   .captain {
     flex-direction: column;
     text-align: center;
@@ -216,10 +249,12 @@ h1 {
 
   .captain img {
     width: 100%;
+    height: 260px;
   }
+
 }
-`}
-</style>
+
+`}</style>
 
       </section>
 
