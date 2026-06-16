@@ -44,7 +44,8 @@ export default function Team(){
     { name: "Rehan Alam", role: "Chassis Engineer" },
     { name: "Vedant Shetty", role: "Brakes Engineer" },
     { name: "Shivam Ghawale", role: "Suspension Engineer" },
-    { name: "Atharva Chaudhari", role: "Suspension Engineer" }
+    { name: "Atharva Chaudhari", role: "Suspension Engineer" },
+    { name: "Vedant Chavan", role: "Suspension Engineer" }
   ]
 
   const marketing = [
