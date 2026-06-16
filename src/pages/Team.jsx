@@ -53,7 +53,6 @@ export default function Team(){
     { name: "Aditya Pisal", role: "Marketing Executive" },
     { name: "Lavanya Desai", role: "Marketing Executive" },
     { name: "Dhanashree Ankule", role: "Marketing Executive" },
-    { name: "Pratibha Singh", role: "Website Management" },
     { name: "Chittansh Pancholi", role: "Website Management" },
     { name: "Maclin Nadar", role: "Content Editor" },
     { name: "Aditya Khanvilkar", role: "Content Editor" }
