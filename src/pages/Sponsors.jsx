@@ -8,7 +8,9 @@ export default function Sponsors() {
     { name: "ScanEra Digital", img: "/sponsors/scanera.png" },
     { name: "SolidWorks", img: "/sponsors/solidworks.jpg" },
     { name: "The Race Syndicate", img: "/sponsors/race.jpg" },
-    { name: "Torque Block", img: "/sponsors/torqueblock.png" }
+    { name: "Torque Block", img: "/sponsors/torqueblock.png" },
+    { name: "Ansys", img: "/sponsors/ansys.png" },
+    { name: "Roaring Toyz 33", img: "/sponsors/roaringtoys.jpg" }
   ]
 
   return (

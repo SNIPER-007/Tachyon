@@ -20,6 +20,16 @@ export default function SponsorsCarousel() {
       name: "Torque Block",
       img: "/sponsors/torqueblock.png",
       link: "https://torqueblock.com"
+    },
+    {
+      name: "Ansys",
+      img: "/sponsors/ansys.png",
+      link: "https://www.ansys.com"
+    },
+    {
+      name: "Roaring Toyz 33",
+      img: "/sponsors/roaringtoys.jpg",
+      link: "https://www.roaringtoyz33.com"
     }
   ]
 
