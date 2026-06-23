@@ -47,7 +47,7 @@ export default function Footer() {
 
             <div className="infoBlock">
               <p>
-                KJ Somaiya College of Engineering<br/>
+                KJ Somaiya School of Engineering<br/>
                 Vidyavihar East, Mumbai - 400077
               </p>
 
