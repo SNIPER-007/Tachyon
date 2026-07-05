@@ -7,6 +7,7 @@ import Team from "./pages/Team.jsx"
 import Bikes from "./pages/Bikes.jsx"
 import About from "./pages/About.jsx"
 import Sponsors from "./pages/Sponsors.jsx"
+import Blog from "./pages/Blog.jsx"
 import BikeDetails from "./pages/BikeDetails"
 import ScrollToTop from "./components/ScrollToTop"
 
@@ -52,6 +53,7 @@ function AnimatedRoutes() {
           <Route path="/bikes" element={<Bikes />} />
           <Route path="/about" element={<About />} />
           <Route path="/sponsors" element={<Sponsors />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/bikes/:id" element={<BikeDetails />} />
         </Routes>
       </motion.div>
